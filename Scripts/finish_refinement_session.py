@@ -1,0 +1,5 @@
+import unreal,json
+from pathlib import Path
+B=Path('D:/DEVELOPMENT/Games/IsekaiVillage');review=json.loads((B/'Saved/refined_render_review.json').read_text());checks=json.loads((B/'Saved/refinement_validation.json').read_text());assert review['stage']=='complete';assert checks['all_collision_pass'];assert json.loads((B/'Saved/meadow_carpet_result.json').read_text())['saved']
+eye=unreal.Vector(85000,-128000,44000);target=unreal.Vector(0,3000,-19000);unreal.EditorLevelLibrary.set_level_viewport_camera_info(eye,unreal.MathLibrary.find_look_at_rotation(eye,target));assert unreal.get_editor_subsystem(unreal.LevelEditorSubsystem).save_current_level()
+(B/'Saved/refinement_delivery.json').write_text(json.dumps({'saved':True,'map':'/Game/IsekaiVillage/AdventureWorld/Maps/Map_AnimeAdventure','views':review['completed'],'collision_checks':len(checks['collision']),'protected_height_samples':194902,'underside_rocks':306,'new_trees':4006,'additional_grass':57167,'background_editor':'quit requested after save','performance_profiled':False},indent=2));unreal.SystemLibrary.quit_editor()

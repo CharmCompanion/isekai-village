@@ -1,0 +1,17 @@
+import unreal,math,random,json
+from pathlib import Path
+B=Path('D:/DEVELOPMENT/Games/IsekaiVillage');R='/Game/IsekaiVillage/AdventureWorld';E=unreal.get_editor_subsystem(unreal.EditorActorSubsystem);M=unreal.MaterialEditingLibrary;A=unreal.EditorAssetLibrary;T=unreal.AssetToolsHelpers.get_asset_tools()
+source=unreal.load_asset('/Game/SoStylized/Environment/Rocks/Materials/Spire/MI_RockSpire_Spires');d={'scalars':{str(n):M.get_material_instance_scalar_parameter_value(source,n) for n in M.get_scalar_parameter_names(source)},'vectors':{str(n):str(M.get_material_instance_vector_parameter_value(source,n)) for n in M.get_vector_parameter_names(source)}};(B/'Saved/spire_material_audit.json').write_text(json.dumps(d,indent=2))
+# Retain the pack's authored UVs and painted rock maps, adding only modest shade fill.
+p=R+'/Materials/M_IV_HeroFracture';parent=unreal.load_asset(p) if A.does_asset_exist(p) else A.duplicate_asset(source.get_base_material().get_path_name().split('.')[0],p)
+base=M.get_material_property_input_node(parent,unreal.MaterialProperty.MP_BASE_COLOR)
+if base:
+ n=M.create_material_expression(parent,unreal.MaterialExpressionMultiply);n.set_editor_property('const_b',.10);M.connect_material_expressions(base,'',n,'A');M.connect_material_property(n,'',unreal.MaterialProperty.MP_EMISSIVE_COLOR)
+M.recompile_material(parent);A.save_loaded_asset(parent)
+ip=R+'/Materials/MI_IV_HeroFracture';mi=unreal.load_asset(ip) if A.does_asset_exist(ip) else A.duplicate_asset(source.get_path_name().split('.')[0],ip);M.set_material_instance_parent(mi,parent);M.set_material_instance_vector_parameter_value(mi,'Rock Tint',unreal.LinearColor(.64,.64,.62,1));M.set_material_instance_scalar_parameter_value(mi,'Cracks Fadeout Distance',2000000.);M.set_material_instance_scalar_parameter_value(mi,'Metallic',0.);A.save_loaded_asset(mi)
+# Few large shear slabs following the rock's downward fracture direction; no stacked rows.
+positions=[(410,-285,-210,130,85,290,165,25),(260,-345,-355,95,75,300,195,-25),(-120,-440,-185,130,75,260,150,35),(-390,-255,-210,100,80,310,210,-20),(-440,115,-150,135,90,300,145,20),(360,215,-255,100,75,295,205,25),(60,400,-210,120,85,240,160,-20),(-170,260,-440,90,75,330,190,25),(165,-150,-610,70,55,280,170,20),(-150,5,-710,95,75,270,200,-15),(-260,-50,-455,115,80,290,155,35),(245,70,-430,125,75,340,205,-20)]
+for i,(x,y,z,sx,sy,sz,roll,pitch) in enumerate(positions):
+ x*=.83;y*=.83;z+=35;sz*=.72
+ m=unreal.load_asset('/Game/SoStylized/Environment/Rocks/Spire/SM_RockSpire_Spire'+str(1+i%8).zfill(2));b=m.get_bounding_box();a=E.spawn_actor_from_class(unreal.StaticMeshActor,unreal.Vector(x*100,y*100,z*100),unreal.Rotator(pitch=pitch,yaw=math.degrees(math.atan2(y,x)),roll=roll));a.static_mesh_component.set_static_mesh(m);a.set_actor_scale3d(unreal.Vector(sx*100/(b.max.x-b.min.x),sy*100/(b.max.y-b.min.y),sz*100/(b.max.z-b.min.z)));o,e=a.get_actor_bounds(False);a.set_actor_location(a.get_actor_location()+unreal.Vector(x*100,y*100,z*100)-o,False,False);a.static_mesh_component.set_material(0,mi);a.set_actor_label('Deep exposed shear fracture');a.set_folder_path('Floating Island/Fractured Bedrock');a.tags=[unreal.Name('IVRockRim10')]
+unreal.get_editor_subsystem(unreal.LevelEditorSubsystem).save_current_level();(B/'Saved/hero_fractures_result.json').write_text(json.dumps({'saved':True,'authored_spire_slabs':12}));exec(compile((B/'Scripts/render_rockrim_v10.py').read_text(),'render','exec'),{'__name__':'__main__'})

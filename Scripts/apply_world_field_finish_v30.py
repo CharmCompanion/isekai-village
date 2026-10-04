@@ -1,0 +1,10 @@
+import unreal,json
+from pathlib import Path
+B=Path('D:/DEVELOPMENT/Games/IsekaiVillage');S=B/'Saved/AdventureWorldSource';R='/Game/IsekaiVillage/AdventureWorld';T=unreal.AssetToolsHelpers.get_asset_tools();A=unreal.EditorAssetLibrary;SS=unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem)
+for name in ['T_IV_WorldBiomes30','T_IV_Agriculture30']:
+ t=unreal.AssetImportTask();t.filename=str(S/(name+'.png'));t.destination_path=R+'/Textures';t.automated=True;t.replace_existing=True;t.save=True;T.import_asset_tasks([t]);tex=unreal.load_asset(R+'/Textures/'+name)
+ tex.set_editor_property('srgb',False);tex.set_editor_property('compression_settings',unreal.TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP);tex.set_editor_property('mip_gen_settings',unreal.TextureMipGenSettings.TMGS_NO_MIPMAPS);tex.set_editor_property('never_stream',True);tex.set_editor_property('address_x',unreal.TextureAddress.TA_CLAMP);tex.set_editor_property('address_y',unreal.TextureAddress.TA_CLAMP);A.save_loaded_asset(tex)
+name='SM_Civ30_Roads';t=unreal.AssetImportTask();t.filename=str(S/'Civilizations30'/(name+'.obj'));t.destination_path=R+'/Meshes/Civilizations';t.destination_name=name;t.automated=True;t.replace_existing=True;t.save=True;op=unreal.FbxImportUI();op.import_materials=False;op.import_textures=False;op.static_mesh_import_data.combine_meshes=True;op.static_mesh_import_data.auto_generate_collision=False;op.static_mesh_import_data.set_editor_property('normal_import_method',unreal.FBXNormalImportMethod.FBXNIM_IMPORT_NORMALS);t.options=op;T.import_asset_tasks([t]);mesh=unreal.load_asset(R+'/Meshes/Civilizations/'+name)
+for i,slot in enumerate(mesh.static_materials):mesh.set_material(i,unreal.load_asset(R+'/Materials/Civilizations/M_Civ30_'+str(slot.material_slot_name)))
+bs=SS.get_lod_build_settings(mesh,0);bs.recompute_normals=False;SS.set_lod_build_settings(mesh,0,bs);A.save_loaded_asset(mesh)
+exec(compile((B/'Scripts/final_continent_material_v30.py').read_text(),'grounded agriculture','exec'),{'__name__':'__main__'})

@@ -1,0 +1,61 @@
+# ─── Unreal generated ────────────────────────────────────────────────────────
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.VC.db
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.opendb
+Build/
+*.xcodeproj
+*.xcworkspace
+
+# ─── Local reference material ────────────────────────────────────────────────
+ReferenceAssets/
+Gaea/
+
+# ─── Fab / marketplace packs ─────────────────────────────────────────────────
+# All re-downloadable from Fab. Excluded to keep the repo usable (~13 GB otherwise).
+# If you add a new pack, add it here too.
+Content/AdvancedPortalsSystemVFX/
+Content/AdvancedVillagePack/
+Content/AdventurersKit/
+Content/Attaku/
+Content/CasualSet01/
+Content/CasualSet04_Elves/
+Content/CasualSet_06_Noble/
+Content/CombatMagicAnims/
+Content/Fab/
+Content/Fantastic_Village_Pack/
+Content/FXVarietyPack/
+Content/InfinityBladeEffects/
+Content/LightVortexShader/
+Content/MageSet01/
+Content/MeleeWeaponAura_VFX/
+Content/MixedVFX/
+Content/Mixed_Magic_VFX_Pack/
+Content/Particles_Wind_Control_System/
+Content/Realistic_Starter_VFX_Pack_Vol2/
+Content/SlashTrail_SoftTofu/
+Content/SoStylized/
+Content/SplineEffect2/
+Content/StylizedBarrierShader/
+Content/StylizedCharacters/
+Content/StylizedIsland/
+Content/StylizedSkymap/
+Content/SwordTrailVFX/
+Content/UltimateSpellSystem/
+Content/Vefects/
+Content/WarriorSet01/
+Content/_SplineVFX/
+
+# ─── World Partition external actor data (regenerated, very large) ───────────
+Content/__ExternalActors__/
+Content/__ExternalObjects__/

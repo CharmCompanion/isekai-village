@@ -1,0 +1,34 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "IsekaiVillageTypes.h"
+#include "PartyReserveComponent.generated.h"
+
+UCLASS(ClassGroup = "IsekaiVillage", meta = (BlueprintSpawnableComponent))
+class ISEKAIVILLAGE_API UPartyReserveComponent : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:
+	UPartyReserveComponent();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
+	int32 MaxReserve = 6;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
+	int32 ActivePartyCap = 2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Party")
+	TArray<FHiredAdventurer> Reserve;
+
+	UFUNCTION(BlueprintCallable, Category = "Party")
+	bool HireAdventurer(FText Name);
+
+	UFUNCTION(BlueprintPure, Category = "Party")
+	int32 GetActiveCompanionCount() const;
+
+	UFUNCTION(BlueprintPure, Category = "Party")
+	int32 GetMaxCompanions() const { return FMath::Max(0, ActivePartyCap - 1); }
+};

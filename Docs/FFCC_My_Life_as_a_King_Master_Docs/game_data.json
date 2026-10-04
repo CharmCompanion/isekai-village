@@ -1,0 +1,50 @@
+{
+  "game_title": "Final Fantasy Crystal Chronicles: My Life as a King",
+  "developer": "Square Enix",
+  "platform": "WiiWare",
+  "release_year": 2008,
+  "engine_constants": {
+    "logic_tick_hz": 10,
+    "seconds_per_game_day": 360,
+    "seconds_per_game_hour": 15,
+    "fast_forward_multiplier": 8.0,
+    "leo_walk_speed_mps": 2.2,
+    "leo_jog_speed_mps": 4.8,
+    "leo_sprint_speed_mps": 7.2
+  },
+  "races": [
+    {
+      "name": "Clavat",
+      "base_stats": {"hp": 100, "mp": 50, "str": 12, "vit": 12, "int": 10, "spr": 11, "agi": 10, "luk": 10},
+      "growth": {"hp": 18, "mp": 6, "str": 1.8, "vit": 1.8, "int": 1.2, "spr": 1.4, "agi": 1.2, "luk": 1.0},
+      "jobs": ["Novice", "Warrior", "Knight", "Paladin", "Holy Knight", "Lord Commander"]
+    },
+    {
+      "name": "Lilty",
+      "base_stats": {"hp": 130, "mp": 20, "str": 16, "vit": 14, "int": 6, "spr": 7, "agi": 8, "luk": 8},
+      "growth": {"hp": 24, "mp": 2, "str": 2.4, "vit": 2.0, "int": 0.8, "spr": 0.8, "agi": 1.0, "luk": 0.8},
+      "jobs": ["Novice", "Berserker", "Gladiator", "Champion", "Warlord", "Warmaster"]
+    },
+    {
+      "name": "Selkie",
+      "base_stats": {"hp": 85, "mp": 40, "str": 11, "vit": 9, "int": 9, "spr": 9, "agi": 16, "luk": 15},
+      "growth": {"hp": 14, "mp": 5, "str": 1.4, "vit": 1.1, "int": 1.0, "spr": 1.0, "agi": 2.5, "luk": 2.0},
+      "jobs": ["Novice", "Thief", "Ranger", "Ninja", "Trickster", "Shadow Master"]
+    },
+    {
+      "name": "Yuke",
+      "base_stats": {"hp": 70, "mp": 120, "str": 6, "vit": 7, "int": 17, "spr": 15, "agi": 9, "luk": 10},
+      "growth": {"hp": 10, "mp": 16, "str": 0.6, "vit": 0.8, "int": 2.6, "spr": 2.4, "agi": 1.1, "luk": 1.0},
+      "jobs": ["Novice", "Mage", "Black Mage", "Sorcerer", "Archmage", "White Mage", "Priest", "High Priest"]
+    }
+  ],
+  "personalities": [
+    {"name": "Brave", "risk_modifier": 2.5, "morale_decay_daily": -5, "preferred_shop": "Weapon"},
+    {"name": "Cautious", "risk_modifier": -1.5, "morale_decay_daily": -2, "preferred_shop": "Item"},
+    {"name": "Greedy", "risk_modifier": 1.0, "morale_decay_daily": -8, "preferred_shop": "Weapon"},
+    {"name": "Lazy", "risk_modifier": -2.0, "morale_decay_daily": -3, "preferred_shop": "Bakery"},
+    {"name": "Earnest", "risk_modifier": 0.0, "morale_decay_daily": -4, "preferred_shop": "Training"},
+    {"name": "Stoic", "risk_modifier": 0.5, "morale_decay_daily": -1, "preferred_shop": "Armor"},
+    {"name": "Cheerful", "risk_modifier": 0.0, "morale_decay_daily": -2, "preferred_shop": "Tavern"}
+  ]
+}
