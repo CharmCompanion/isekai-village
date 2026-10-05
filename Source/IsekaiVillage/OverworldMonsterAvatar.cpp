@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "OverworldMonsterAvatar.h"
-#include "IsekaiVillageCharacter.h"
 #include "IsekaiVillageTypes.h"
 #include "Components/SphereComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -10,7 +9,6 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/SkeletalMesh.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Animation/AnimInstance.h"
 
 AOverworldMonsterAvatar::AOverworldMonsterAvatar()
 {
@@ -50,11 +48,6 @@ AOverworldMonsterAvatar::AOverworldMonsterAvatar()
 		HeadMesh->SetSkeletalMesh(HeadAsset.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> AnimBP(TEXT("/Game/IsekaiVillage/ABP/ABP_IsekaiEnemy.ABP_IsekaiEnemy_C"));
-	if (AnimBP.Succeeded())
-	{
-		GetMesh()->SetAnimInstanceClass(AnimBP.Class);
-	}
 }
 
 void AOverworldMonsterAvatar::BeginPlay()
@@ -92,7 +85,7 @@ void AOverworldMonsterAvatar::Tick(float DeltaTime)
 	}
 
 	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0);
-	if (PlayerPawn && PlayerPawn->IsA<AIsekaiVillageCharacter>())
+	if (PlayerPawn)
 	{
 		const float Dist = FVector::Dist(GetActorLocation(), PlayerPawn->GetActorLocation());
 		if (Dist <= AggroRadius)
@@ -159,7 +152,6 @@ void AOverworldMonsterAvatar::OnEncounterOverlap(UPrimitiveComponent* Overlapped
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (bEncounterTriggered) return;
-	if (!Cast<AIsekaiVillageCharacter>(OtherActor)) return;
 
 	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
 	if (!PC || OtherActor != PC->GetPawn()) return;
@@ -200,17 +192,17 @@ void AOverworldMonsterAvatar::TriggerBattleEncounter(APawn* PlayerPawn)
 		switch (ArenaBiome)
 		{
 		case EBattleArenaBiome::Forest:
-			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/Map_Battle_Forest");
+			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/BattleStub_Forest");
 			break;
 		case EBattleArenaBiome::Desert:
-			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/Map_Battle_Desert");
+			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/BattleStub_Desert");
 			break;
 		case EBattleArenaBiome::Arena:
-			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/Map_BattleArena");
+			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/BattleStub_Arena");
 			break;
 		case EBattleArenaBiome::Plains:
 		default:
-			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/Map_Battle_Plains");
+			BattleMapName = TEXT("/Game/IsekaiVillage/Maps/BattleStub_Plains");
 			break;
 		}
 	}

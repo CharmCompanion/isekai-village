@@ -171,6 +171,17 @@ struct ISEKAIVILLAGE_API FHiredAdventurer
 };
 
 UENUM(BlueprintType)
+enum class ELocomotionAnimState : uint8
+{
+	Idle       UMETA(DisplayName = "Idle"),
+	Walk       UMETA(DisplayName = "Walk"),
+	Run        UMETA(DisplayName = "Run"),
+	Jump       UMETA(DisplayName = "Jump"),
+	DodgeRoll  UMETA(DisplayName = "Dodge Roll"),
+	Action     UMETA(DisplayName = "Action")
+};
+
+UENUM(BlueprintType)
 enum class EBattleArenaBiome : uint8
 {
 	Plains    UMETA(DisplayName = "Grasslands / Plains"),

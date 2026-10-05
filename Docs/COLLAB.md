@@ -10,8 +10,8 @@ Both machines need the **same Unreal Engine 5.8** build (Epic Launcher → Unrea
 ## 2. Get the project
 Clone this repo. Do **not** copy `Binaries/`, `Intermediate/`, or `Saved/` from the other PC.
 
-## 3. Restore Fab / marketplace packs
-Those folders are gitignored (they are huge and re-downloadable). Copy them from the other PC's `Content/` **or** reinstall from Fab. The ignore list is in `.gitignore` under `Content/`. Missing packs show as missing assets, not a failed open.
+## 3. Fab / marketplace packs
+Packs under `Content/` are tracked with Git LFS. After clone, wait for `git lfs pull` to finish (first clone is large). Do not skip LFS or meshes/materials will be pointer files.
 
 ## 4. Open in Unreal
 1. Double-click `IsekaiVillage.uproject`
