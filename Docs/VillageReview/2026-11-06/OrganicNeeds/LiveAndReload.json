@@ -1,0 +1,74 @@
+{
+  "success": true,
+  "reload_pass": true,
+  "slot": "VerifyOrganic_30cc5a394608436288c73b4f188dd7a9",
+  "checks": [
+    "Fresh session keeps four housed individuals",
+    "Fresh session preserves adventurer identity",
+    "Fresh session preserves practice",
+    "Fresh session preserves learned skill",
+    "Fresh session preserves learned passive",
+    "Fresh session preserves personality",
+    "Roster and village agree on personal learning"
+  ],
+  "creation_pass": {
+    "success": true,
+    "reload_pass": false,
+    "slot": "VerifyOrganic_30cc5a394608436288c73b4f188dd7a9",
+    "checks": [
+      "Organic choices enabled in saved map",
+      "Selected Guild",
+      "Built Guild",
+      "Selected Townhouse",
+      "Built Townhouse",
+      "Selected Cottage",
+      "Built Cottage",
+      "Selected Training",
+      "Built Training",
+      "Add isolated test adventurer",
+      "Add isolated test peer",
+      "Set initial needs Adv_1",
+      "Set initial needs Adv_2",
+      "Travelling gives no practice credit",
+      "Adventurer walked to chosen practice",
+      "Another adventurer independently recharged",
+      "Civilian work continues alongside personal activities",
+      "Practice earned Guard Stance",
+      "Sustained practice earned Enduring Core",
+      "Peer has separate learning",
+      "Set exhaustion stimulus",
+      "Exhaustion led to recharge at home",
+      "Recharge did not generate practice",
+      "Save completed organic scenario"
+    ],
+    "progress": {
+      "seconds": 83.03099999995902,
+      "practice": 297.41168212890625,
+      "activity": "Practice",
+      "skills": [
+        "GuardStance"
+      ],
+      "passives": [],
+      "peer_fatigue": 41.90657043457031,
+      "blocked": false,
+      "position": [
+        17320.4768157776,
+        -1051.0681491856958,
+        2555.595947265625
+      ]
+    },
+    "want_line": "Practice student | I want to practise Guard. Recharge need 36 / Curiosity 73 / Company 12 | Learned passive Enduring Core through Guard.",
+    "expected": {
+      "student": "Adv_1",
+      "id": "FF2CEC30493D440C8E8C3CBE334FDB73",
+      "practice": 300.11865234375,
+      "diligence": 0.4195778965950012
+    }
+  },
+  "expected": {
+    "student": "Adv_1",
+    "id": "FF2CEC30493D440C8E8C3CBE334FDB73",
+    "practice": 300.11865234375,
+    "diligence": 0.4195778965950012
+  }
+}

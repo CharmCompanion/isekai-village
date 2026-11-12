@@ -1,0 +1,224 @@
+{
+  "success": true,
+  "reload_pass": true,
+  "slot": "VerifyHallWorkers_807a2ad435bd4e8bb921e9480d9eeef6",
+  "checks": [
+    "Fresh session restores all five jobs",
+    "Stable worker identities survive fresh session",
+    "Collected inventory survives fresh session",
+    "Withdrawn store stays empty",
+    "Supply site depletion survives fresh session"
+  ],
+  "creation_pass": {
+    "success": true,
+    "reload_pass": false,
+    "slot": "VerifyHallWorkers_807a2ad435bd4e8bb921e9480d9eeef6",
+    "checks": [
+      "Three basic depots configured",
+      "Catalogue selects Guild",
+      "Placed Guild",
+      "Catalogue selects Townhouse",
+      "Placed Townhouse",
+      "Catalogue selects Cottage",
+      "Placed Cottage",
+      "Catalogue selects Bakery",
+      "Placed Bakery",
+      "Catalogue selects Smith",
+      "Placed Smith",
+      "Catalogue selects Warehouse",
+      "Placed Warehouse",
+      "Five beds staff five workplaces",
+      "All workers physically traversed streets",
+      "Stone fish and wood reached hall",
+      "Bread and tool parts physically delivered",
+      "Observed carried resource and production cargo",
+      "T transfers every delivered resource",
+      "T empties the hall store",
+      "F5 saves worker economy"
+    ],
+    "population": {
+      "records": [
+        {
+          "job": "ES02_36",
+          "home": "ES02_14"
+        },
+        {
+          "job": "ExistingFarm",
+          "home": "ES02_14"
+        },
+        {
+          "job": "ES02_01",
+          "home": "ES02_14"
+        },
+        {
+          "job": "ES02_17",
+          "home": "ES02_18"
+        },
+        {
+          "job": "ES02_11",
+          "home": "ES02_18"
+        }
+      ],
+      "actor_jobs": [
+        "ES02_36",
+        "ExistingFarm",
+        "ES02_01",
+        "ES02_17",
+        "ES02_11"
+      ],
+      "farm": [
+        {
+          "id": "ExistingFarm",
+          "built": true,
+          "scenery": true,
+          "kind": "<TownBuilding.FARM: 9>"
+        }
+      ]
+    },
+    "progress": {
+      "seconds": 260.65600000001723,
+      "store": {
+        "Wheat": 8,
+        "Stone": 4,
+        "Fish": 6,
+        "Wood": 3,
+        "Bread": 2,
+        "ToolParts": 1
+      },
+      "cargo_seen": [
+        "Bread",
+        "Fish",
+        "Stone",
+        "ToolParts",
+        "Wheat",
+        "Wood"
+      ],
+      "workers": [
+        {
+          "job": "ES02_36",
+          "position": [
+            20393.44719955438,
+            -9665.165847998262,
+            2323.856201171875
+          ],
+          "goal": [
+            -11526.705735326363,
+            15849.404420453502,
+            3256.3952345499024
+          ],
+          "blocked": false,
+          "route_index": 4,
+          "route_size": 512
+        },
+        {
+          "job": "ExistingFarm",
+          "position": [
+            19595.836304038246,
+            -9202.206732445404,
+            2316.2724609375
+          ],
+          "goal": [
+            20675.85333988041,
+            -9891.000000000011,
+            2232.6190058777165
+          ],
+          "blocked": false,
+          "route_index": 200,
+          "route_size": 219
+        },
+        {
+          "job": "ES02_01",
+          "position": [
+            20368.026300230777,
+            -9772.22500733588,
+            2321.833251953125
+          ],
+          "goal": [
+            8752.786145287162,
+            4300.430453667562,
+            2564.952699699432
+          ],
+          "blocked": false,
+          "route_index": 5,
+          "route_size": 303
+        },
+        {
+          "job": "ES02_17",
+          "position": [
+            20613.72543279045,
+            -9855.130436117435,
+            2328.59619140625
+          ],
+          "goal": [
+            20675.85333988041,
+            -9891.000000000011,
+            2232.6190058777165
+          ],
+          "blocked": false,
+          "route_index": 337,
+          "route_size": 340
+        },
+        {
+          "job": "ES02_11",
+          "position": [
+            19533.34849303817,
+            -9288.79020849293,
+            2314.013916015625
+          ],
+          "goal": [
+            -19553.322653306044,
+            -8323.70882730383,
+            3402.076710696241
+          ],
+          "blocked": false,
+          "route_index": 16,
+          "route_size": 547
+        }
+      ]
+    },
+    "expected": {
+      "ids": [
+        "35CDEBEF49039F419AE77AB8D2AB5A39",
+        "4DBF5434439913A7DF6E038BF431C862",
+        "9FA89E7841CAB7109C9EAF9611FEE62D",
+        "AD07BB0C46E688D95774CB95FB32B55B",
+        "B01C60BA4B47643C9F5DCC9803AC727E"
+      ],
+      "inventory": {
+        "Stone": 4,
+        "Fish": 6,
+        "Wood": 145,
+        "Wheat": 8,
+        "Bread": 2,
+        "ToolParts": 1
+      },
+      "stocks": [
+        54,
+        54,
+        54
+      ]
+    }
+  },
+  "expected": {
+    "ids": [
+      "35CDEBEF49039F419AE77AB8D2AB5A39",
+      "4DBF5434439913A7DF6E038BF431C862",
+      "9FA89E7841CAB7109C9EAF9611FEE62D",
+      "AD07BB0C46E688D95774CB95FB32B55B",
+      "B01C60BA4B47643C9F5DCC9803AC727E"
+    ],
+    "inventory": {
+      "Stone": 4,
+      "Fish": 6,
+      "Wood": 145,
+      "Wheat": 8,
+      "Bread": 2,
+      "ToolParts": 1
+    },
+    "stocks": [
+      54,
+      54,
+      54
+    ]
+  }
+}

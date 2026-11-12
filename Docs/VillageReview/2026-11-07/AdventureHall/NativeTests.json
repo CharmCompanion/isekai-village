@@ -1,0 +1,411 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "DESKTOP-1SKGKJK",
+			"instance": "171417ED4621E50CC56445B98CE076F5",
+			"instanceName": "DESKTOP-1SKGKJK-17512",
+			"platform": "WindowsEditor",
+			"oSVersion": "Windows 11 (26H2) [10.0.26300.9818] ",
+			"model": "Default",
+			"gPU": "AMD Radeon RX 6700",
+			"cPUModel": "AMD Ryzen 7 5700                               ",
+			"rAMInGB": 32,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.07-08.35.21",
+	"succeeded": 10,
+	"succeededWithWarnings": 1,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.91393017768859863,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "LearnedSkillSparring",
+			"fullTestPath": "IsekaiVillage.Combat.LearnedSkillSparring",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.19736430048942566,
+			"dateTime": "2026.11.07-08.35.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PartyTurnsAndVictory",
+			"fullTestPath": "IsekaiVillage.Combat.PartyTurnsAndVictory",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.047085803002119064,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AuthoredPlots",
+			"fullTestPath": "IsekaiVillage.Construction.AuthoredPlots",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.059297498315572739,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_1",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_1",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_2",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_3",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_2",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_4",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_5",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_3",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_6",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_4",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_7",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_5",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_8",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.StaticMeshActor_6",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_9",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogSpawn: UWorld::DestroyActor: World has no context! World: Untitled, Actor: /Temp/Untitled_3.Untitled:PersistentLevel.ArchitectStake_10",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.07-08.35.21"
+				}
+			],
+			"warnings": 18,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AdventurerPracticePersistence",
+			"fullTestPath": "IsekaiVillage.Golems.AdventurerPracticePersistence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.047064699232578278,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HallCreationAndParty",
+			"fullTestPath": "IsekaiVillage.Golems.HallCreationAndParty",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.1222108006477356,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HallResourceAndHousingGuards",
+			"fullTestPath": "IsekaiVillage.Golems.HallResourceAndHousingGuards",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.080324605107307434,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WantsAndLearning",
+			"fullTestPath": "IsekaiVillage.Golems.WantsAndLearning",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.021106701344251633,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SlimeRunicRules",
+			"fullTestPath": "IsekaiVillage.Magic.SlimeRunicRules",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.032282300293445587,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GolemShopLoop",
+			"fullTestPath": "IsekaiVillage.Village.GolemShopLoop",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.12637770175933838,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HallDeliveries",
+			"fullTestPath": "IsekaiVillage.Village.HallDeliveries",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.073447495698928833,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WorkerProduction",
+			"fullTestPath": "IsekaiVillage.Village.WorkerProduction",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"171417ED4621E50CC56445B98CE076F5"
+			],
+			"duration": 0.10736820101737976,
+			"dateTime": "2026.11.07-08.35.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

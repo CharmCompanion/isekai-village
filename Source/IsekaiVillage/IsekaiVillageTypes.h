@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GolemNeeds.h"
 #include "Engine/DataAsset.h"
 #include "Engine/Texture2D.h"
 #include "Engine/GameInstance.h"
@@ -129,6 +130,21 @@ struct ISEKAIVILLAGE_API FSphereNode
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
 	int32 Gald_Percent = 0;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
+	int32 Attack_Bonus = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
+	int32 Magic_Bonus = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
+	float Res_Percent = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
+	float Attraction_Percent = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Stat")
+	float WorkerPace_Percent = 0.0f;
+
 	// Skill node
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid|Skill")
 	TObjectPtr<UArteDataAsset> UnlockArte = nullptr;
@@ -153,6 +169,14 @@ struct ISEKAIVILLAGE_API FHiredAdventurer
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
 	FName AdventurerID;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") FGuid GolemId;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") FGolemDriveState Drives;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") FName ClassId;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") bool bHasChosenBody=false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") bool bFemaleBody=false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") int32 WeaponTier=0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") int32 ArmorTier=0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Party") int32 TemperLevel=0;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
 	FText Name;

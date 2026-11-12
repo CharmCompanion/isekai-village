@@ -1,0 +1,3 @@
+mesh=u.load_asset('/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Mage')
+task=u.AssetExportTask();task.object=mesh;task.filename=str(r/'ArtSource/Golems/NativeWardrobe/UE_Face_Check.fbx');task.automated=True;task.prompt=False;task.replace_identical=True;task.exporter=u.SkeletalMeshExporterFBX();task.options=u.FbxExportOption();task.options.level_of_detail=False;assert u.Exporter.run_asset_export_task(task)
+(r/'Saved/native_face_api.json').write_text(json.dumps({'geometry_classes':[n for n in dir(u) if 'GeometryScript' in n and any(s in n for s in ['Asset','Query','Material','Bone'])]}))

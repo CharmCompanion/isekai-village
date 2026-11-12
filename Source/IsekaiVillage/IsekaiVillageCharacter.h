@@ -10,6 +10,7 @@
 #include "NiagaraComponent.h"
 #include "InputActionValue.h"
 #include "IsekaiVillageTypes.h"
+#include "SphereGridDataAsset.h"
 #include "ProceduralMagicCircle.h"
 #include "SpellProjectile.h"
 #include "IsekaiVillageCharacter.generated.h"
@@ -20,6 +21,11 @@ class UAnimSequence;
 class UAnimInstance;
 class USphereGridDataAsset;
 class UPartyReserveComponent;
+class UBuildEditComponent;
+class UGatherInventoryComponent;
+class UTreeChopComponent;
+class AVillageCitizen;
+class AArchitectStake;
 
 UCLASS(Blueprintable, BlueprintType)
 class ISEKAIVILLAGE_API AIsekaiVillageCharacter : public ACharacter
@@ -31,6 +37,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:
 	virtual void Tick(float DeltaTime) override;
@@ -173,14 +180,77 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
 	bool bSphereSkillTrailblaze = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	int32 SphereDisc = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	bool bWorkFlipped = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	bool bCenterBUnlocked = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	int32 SphereYieldBonus = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	float SphereBuildSpeed = 0.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	bool bSphereSkillJab = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	bool bSphereSkillDoubleKick = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	bool bSphereSkillHawkSmash = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	FSphereGridStatTotals SphereTotals;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SphereGrid")
+	TSet<FName> UnlockedSphereActions;
+
+	UFUNCTION(BlueprintPure, Category = "SphereGrid")
+	bool HasSphereSkill(FName Action) const { return UnlockedSphereActions.Contains(Action); }
+
+	UFUNCTION(BlueprintCallable, Category = "SphereGrid")
+	bool SelectSphereDisc(int32 DiscIndex);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Party")
 	TObjectPtr<UPartyReserveComponent> PartyReserve;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Build")
+	TObjectPtr<UBuildEditComponent> BuildEdit;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gather")
+	TObjectPtr<UGatherInventoryComponent> Gather;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gather")
+	TObjectPtr<UTreeChopComponent> TreeChop;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Party")
 	bool bNearGuildMaster = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gather")
+	bool bNearBlacksmith = false;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Zone")
 	bool bNearTownZone = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Village")
+	bool bNearCitizen = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Village")
+	TObjectPtr<AVillageCitizen> NearbyCitizen;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Village")
+	bool bNearDayBoard = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Village")
+	bool bNearTownPlot = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Village")
+	TObjectPtr<AArchitectStake> NearbyPlot;
 
 	// NIER: AUTOMATA MOVEMENT SYSTEM
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement|Dodge")
@@ -289,8 +359,36 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SphereGrid")
 	void ToggleSphereGrid();
 
+	UFUNCTION(BlueprintCallable, Category = "SphereGrid")
+	void CycleSphereDisc();
+
+	bool SphereFaceFlipped() const { return SphereDisc == 0 ? bSphereGridFlipped : (SphereDisc == 1 ? bWorkFlipped : false); }
+	void UpdateMovementSpeed();
+
 	UFUNCTION(BlueprintCallable, Category = "Party")
 	void TryTalkToGuild();
+	UFUNCTION(BlueprintCallable, Category = "Village") void BuyShopWood();
+	UFUNCTION(BlueprintCallable, Category = "Village") void SaveVillageProgress();
+ UFUNCTION(BlueprintCallable,Category="Party|Combat") void ToggleSparring();
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Party") TObjectPtr<class UGolemHallWidget> HallWidget;
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Village") TObjectPtr<class UShopWidget> ShopWidget;
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Village") TObjectPtr<class UForgeWidget> ForgeWidget;
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Village") TObjectPtr<class UTownServiceWidget> ServiceWidget;
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Village") TObjectPtr<class UDayBoardWidget> BoardWidget;
+ UPROPERTY(Transient,BlueprintReadOnly,Category="Village") TObjectPtr<class UBuildingCatalogWidget> CatalogWidget;
+ UFUNCTION(BlueprintCallable,Category="Village") bool OpenBoardMenu();
+ UFUNCTION(BlueprintCallable,Category="Village") bool OpenServiceMenu(FName PlotId = NAME_None);
+ void SyncBuildingCatalogWidget(class AVillageRuntime* Village);
+ UFUNCTION(BlueprintPure,Category="UI") bool HasBlockingModalUI() const;
+ void CloseAllModals();
+ UFUNCTION(BlueprintCallable,Category="Village") void ToggleStationMenu();
+ UFUNCTION(BlueprintCallable,Category="Village") bool OpenShopMenu(FName ShopPlot = NAME_None);
+ UFUNCTION(BlueprintCallable,Category="Village") bool OpenForgeMenu();
+ UFUNCTION(BlueprintCallable,Category="Party") void ToggleAdventureHall();
+ UFUNCTION(BlueprintCallable) void TowerInteract();
+ UFUNCTION(BlueprintCallable) void TowerReturn();
+ UFUNCTION(BlueprintCallable) void TowerRations();
+ void SparStrike();void SparDefend();void SparGuard();void SparBolt();void SparHeal();void SparEvade();void SparCycleTarget();
 
 	UFUNCTION(BlueprintPure, Category = "Magic")
 	FVector GetGroundAimLocation() const;
@@ -313,6 +411,21 @@ public:
 	void OnArte4Released();
 	void OnScrollUp();
 	void OnScrollDown();
+	void OnBuildToggle();
+	void OnBuildTogglePropMode();
+	void OnBuildToggleWheel();
+	void OnRotateTownBuilding();
+	void OnBuildCornerPullIn();
+	void OnBuildCornerPullOut();
+	void OnBuildCycleWallStyle();
+	void OnBuildCycleMaterial();
+	void OnBuildToggleFreeform();
+	void OnBuildScaleUp();
+	void OnBuildScaleDown();
+	UFUNCTION(BlueprintPure, Category = "Build")
+	bool IsBuildMode() const;
+	bool TryGather();
+	int32 GetGatherLevel() const;
 
 	// NIER
 	void SetBulletTime(bool bActive, float Dilation = 0.25f);

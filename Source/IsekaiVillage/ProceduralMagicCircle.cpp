@@ -127,7 +127,9 @@ void AProceduralMagicCircle::Tick(float DeltaTime)
 	}
 	if (CircleMeshComp)
 	{
-		CircleMeshComp->SetVisibility(false);
+		CircleMeshComp->SetVisibility(SemanticRuneTexture != nullptr);
+		CircleMeshComp->SetRelativeScale3D(FVector(3.3f * VisualScale));
+		CircleMeshComp->SetRelativeRotation(FRotator(0, -FMath::RadiansToDegrees(CurrentRotation) * 0.6f, 0));
 	}
 
 	if (VisualState == ECircleVisualState::Casting)
@@ -173,6 +175,7 @@ void AProceduralMagicCircle::Tick(float DeltaTime)
 
 FLinearColor AProceduralMagicCircle::GetElementColor(EElement InElement) const
 {
+	if (SemanticRuneTexture) return SemanticTint;
 	if (SpellVisuals && SpellVisuals->ElementVisuals.Contains(InElement))
 	{
 		return SpellVisuals->ElementVisuals[InElement].PrimaryColor;
@@ -190,6 +193,7 @@ FLinearColor AProceduralMagicCircle::GetElementColor(EElement InElement) const
 
 UTexture2D* AProceduralMagicCircle::GetTextureForElement(EElement InElement) const
 {
+	if (SemanticRuneTexture) return SemanticRuneTexture;
 	switch (InElement)
 	{
 	case EElement::Fire:  return FireCircleTexture ? FireCircleTexture : MasterCircleTexture;
@@ -203,6 +207,19 @@ UTexture2D* AProceduralMagicCircle::GetTextureForElement(EElement InElement) con
 void AProceduralMagicCircle::SetActiveElement(EElement NewElement)
 {
 	ActiveElement = NewElement;
+}
+
+void AProceduralMagicCircle::ConfigureRunes(EElement Element, UTexture2D* Texture, FLinearColor Tint)
+{
+	ActiveElement=Element; SemanticRuneTexture=Texture; SemanticTint=Tint;
+	if (UMaterialInterface* StrokeMaterial=LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/IsekaiVillage/Magic/Slimes/M_RunicStroke")))
+		GeneratedCircleMesh->SetMaterial(0,UMaterialInstanceDynamic::Create(StrokeMaterial,this));
+	if (UMaterialInterface* RuneMaterial=LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/IsekaiVillage/Magic/Slimes/M_RunicSentence")))
+	{
+		DynamicCircleMaterial=CircleMeshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0,RuneMaterial);
+		DynamicCircleMaterial->SetTextureParameterValue(TEXT("CircleTexture"),Texture);
+	}
+	RebuildCircle();
 }
 
 void AProceduralMagicCircle::RebuildCircle()
@@ -273,6 +290,7 @@ void AProceduralMagicCircle::ActivateSpellBurst(bool bStayActive)
 {
 	if (!bStayActive)
 	{
+		if (SemanticRuneTexture) VisualState=ECircleVisualState::Sustained;
 		bIsFadingOut = true;
 		FadeTimer = 0.35f;
 	}
@@ -365,6 +383,8 @@ void AProceduralMagicCircle::RebuildGeneratedGeometry()
 
 	for (const FMagicCirclePoly& Layer : CompiledLayers)
 	{
+		// Semantic circles use the authored effect seal in the center, not the legacy X.
+		if (SemanticRuneTexture && !Layer.bClosed) continue;
 		const float Span = FMath::Max(0.01f, Layer.DrawEnd - Layer.DrawStart);
 		float Local = (ActiveChargeRatio - Layer.DrawStart) / Span;
 		Local = FMath::Clamp(Local, 0.0f, 1.0f);

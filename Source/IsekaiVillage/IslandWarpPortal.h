@@ -36,6 +36,9 @@ public:
 	FName ArrivalPlayerStartTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Portal")
+	int32 RequiredLevel = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Portal")
 	float MaxChargeTime = 2.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Portal")

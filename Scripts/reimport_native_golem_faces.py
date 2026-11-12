@@ -1,0 +1,8 @@
+u.SystemLibrary.execute_console_command(world,'Interchange.FeatureFlags.Import.FBX 0');T=u.AssetToolsHelpers.get_asset_tools()
+for body,name in [('BodyA','SK_Golem_PlayerBody'),('BodyB','SK_Golem_PlayerBodyFemale')]:
+ path='/Game/Elrhun/Golems/PlayerBody/Mesh';mesh=u.load_asset(path+'/'+name);old={str(s.material_slot_name):s.material_interface for s in mesh.get_editor_property('materials')};physics=mesh.get_editor_property('physics_asset');skeleton=mesh.get_editor_property('skeleton')
+ task=u.AssetImportTask();task.filename=str(r/'ArtSource/Golems/PlayerBody'/(name+'.fbx'));task.destination_path=path;task.destination_name=name;task.automated=True;task.save=True;task.replace_existing=True;task.factory=u.FbxFactory();opt=u.FbxImportUI();opt.automated_import_should_detect_type=False;opt.import_as_skeletal=True;opt.mesh_type_to_import=u.FBXImportType.FBXIT_SKELETAL_MESH;opt.import_mesh=True;opt.import_animations=False;opt.import_materials=False;opt.import_textures=False;opt.create_physics_asset=False;opt.set_editor_property('skeleton',skeleton);opt.skeletal_mesh_import_data.normal_import_method=u.FBXNormalImportMethod.FBXNIM_IMPORT_NORMALS;opt.skeletal_mesh_import_data.set_editor_property('bImportMorphTargets',True);task.options=opt;T.import_asset_tasks([task]);mesh=u.load_asset(path+'/'+name);mesh.set_editor_property('physics_asset',physics)
+ slots=list(mesh.get_editor_property('materials'))
+ for slot in slots:slot.set_editor_property('material_interface',old[str(slot.material_slot_name)])
+ mesh.set_editor_property('materials',slots);u.EditorAssetLibrary.save_loaded_asset(mesh,only_if_is_dirty=False)
+p=r/'Scripts/native_wardrobe_import_impl.py';exec(compile(p.read_text(),str(p),'exec'),globals())

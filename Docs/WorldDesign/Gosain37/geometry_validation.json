@@ -1,0 +1,29 @@
+{
+  "road_vertices": 32576,
+  "road_clearance_m_min": 0.020876437811239157,
+  "road_clearance_m_max": 0.13616626533621456,
+  "road_vertices_buried_more_than_2cm": 0,
+  "road_vertices_over_30cm": 0,
+  "houses": 3229,
+  "house_origin_above_terrain_m_min": -0.0006504012126242742,
+  "house_origin_above_terrain_m_max": 1.3617273126255895,
+  "terrain": {
+    "name": "SM_IV_Continent_GosainTerraces37",
+    "original_vertices": 1075152,
+    "vertices": 1856600,
+    "triangles": 3712686,
+    "local_triangles": 1566038,
+    "unchanged_outside_vertices": 1073706,
+    "max_displacement_m": 14.500026549998438,
+    "local_edges": {
+      "open": 242,
+      "nonmanifold": 0
+    },
+    "terrace_levels_relative_to_old_city_m": [
+      1.5,
+      7.5,
+      14.5
+    ],
+    "elapsed_s": 113.88909554481506
+  }
+}

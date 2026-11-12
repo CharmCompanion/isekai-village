@@ -1,0 +1,10 @@
+"""Enable the first staffed village loop in the current sky map only."""
+from pathlib import Path
+import json,shutil,datetime,unreal as u
+r=Path('D:/DEVELOPMENT/Games/Tower of Elrhun');folder=r/'ArtSource/World/ElRuhnSky02';routes=json.loads((folder/'golem_street_routes.json').read_text());assert routes['success'];source=r/'Content/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky.umap';backup=r/'Saved/VillageLoopBackup/Map_ElRuhnSky_BeforeGolemLoop.umap'
+if not backup.exists():shutil.copy2(source,backup)
+world=u.EditorLoadingAndSavingUtils.load_map('/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky');actors=u.get_editor_subsystem(u.EditorActorSubsystem);v=next(a for a in actors.get_all_level_actors() if isinstance(a,u.VillageRuntime));v.modify();v.set_editor_property('use_golem_village',True);v.set_editor_property('window_seconds',60.);v.set_editor_property('street_nodes',[u.Vector(*p) for p in routes['nodes_cm']]);v.set_editor_property('street_edges',[u.IntPoint(*p) for p in routes['edges']]);report={'success':False,'map':world.get_path_name(),'street_nodes':len(routes['nodes_cm']),'street_edges':len(routes['edges']),'looks':{}}
+motion=json.loads((r/'ArtSource/Golems/NativeMotion/manifest.json').read_text())['animations']
+for body,sex in [('BodyA','male'),('BodyB','female')]:
+ mesh=u.load_asset('/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_'+body+'_Mage');idle=u.load_asset(motion[body+'_Idle']['path']);walk=u.load_asset(motion[body+'_Walk_InPlace']['path']);assert mesh and idle and walk;assert mesh.get_editor_property('skeleton')==idle.get_editor_property('skeleton')==walk.get_editor_property('skeleton');v.set_editor_property(sex+'_worker_mesh',mesh);v.set_editor_property(sex+'_worker_idle',idle);v.set_editor_property(sex+'_worker_walk',walk);report['looks'][sex]={'mesh':mesh.get_path_name(),'idle':idle.get_path_name(),'walk':walk.get_path_name()}
+assert u.EditorLoadingAndSavingUtils.save_map(world,'/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky');report['success']=True;report['save_slot']=v.get_editor_property('construction_save_slot');(r/'Saved/golem_village_setup.json').write_text(json.dumps(report,indent=2))

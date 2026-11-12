@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "completed": "2026-11-06",
+  "project": "D:\\DEVELOPMENT\\Games\\Tower of Elrhun",
+  "map": "/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky",
+  "scope": "First civilian shopkeeper loop for player-built shops and housing. Other civilian jobs, adventurer creation, soul-stone inheritance, tower floor state and combat saves remain future work.",
+  "automated_tests": [
+    {
+      "name": "IsekaiVillage.Construction.AuthoredPlots",
+      "state": "Success"
+    },
+    {
+      "name": "IsekaiVillage.Village.GolemShopLoop",
+      "state": "Success"
+    }
+  ],
+  "live_creation_input_movement_trade_checks": 28,
+  "fresh_process_reload_checks": 11,
+  "restored": {
+    "id": "CAD007274B555A09EAC66583DE765F4A",
+    "home": "ES02_15",
+    "shop": "ES02_26",
+    "wood": 31,
+    "coins": 2,
+    "shop_wood": 5,
+    "shop_coins": 38,
+    "sphere_points": 9
+  },
+  "new_golem_actor_mesh": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Mage.SK_Native_BodyA_Mage",
+  "existing_combat_baseline": {
+    "baseline_build": "Original project module from Saved/VillageLoopBackup/20261105_213008",
+    "original_test_state": "Fail",
+    "unchanged_failures": true,
+    "error_count": 5,
+    "errors": [
+      "Expected 'Burn refreshes, does not stack, clamps long frame at expiry' to be 91.000000, but it was 100.000000 and outside tolerance 0.000100.",
+      "Expected 'Poison total' to be 71.000000, but it was 100.000000 and outside tolerance 0.000100.",
+      "Expected 'Ward overflow reaches health' to be 85.000000, but it was 100.000000 and outside tolerance 0.000100.",
+      "Expected 'Swept bolt hits once even across a long frame' to be 67.000000, but it was 100.000000 and outside tolerance 0.000100.",
+      "Expected 'Poison persists when caster is removed' to be 63.000000, but it was 100.000000 and outside tolerance 0.000100."
+    ]
+  },
+  "verification_used_isolated_save": true,
+  "user_buildings_not_purchased_by_verification": true
+}

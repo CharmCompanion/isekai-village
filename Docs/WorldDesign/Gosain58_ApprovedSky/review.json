@@ -1,0 +1,10 @@
+{
+  "status": "native_views_inspected",
+  "approved": true,
+  "gosain_blue_cutoff_removed": true,
+  "elruhn_appearance_matches_approved_change": true,
+  "remaining_limits": [
+    "Gosain terrain/architecture polish remains unfinished.",
+    "Existing broad slopes and repetitive trees are not fixed by atmosphere."
+  ]
+}

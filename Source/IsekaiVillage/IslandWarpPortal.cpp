@@ -2,10 +2,12 @@
 
 #include "IslandWarpPortal.h"
 #include "IsekaiVillageCharacter.h"
+#include "IsekaiVillageTypes.h"
 #include "ProceduralMagicCircle.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/Engine.h"
 #include "Kismet/GameplayStatics.h"
 
 AIslandWarpPortal::AIslandWarpPortal()
@@ -80,7 +82,24 @@ void AIslandWarpPortal::Tick(float DeltaTime)
 
 	if (!bHasWarped && bPlayerInside && ChargeTime >= MaxChargeTime && !DestinationLevel.IsNone())
 	{
+		if (RequiredLevel > 0)
+		{
+			APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr;
+			if (AIsekaiVillageCharacter* Character = PC ? Cast<AIsekaiVillageCharacter>(PC->GetPawn()) : nullptr)
+			{
+				if (Character->GetGatherLevel() < RequiredLevel)
+				{
+					ChargeTime = 0.0f;
+					if (GEngine) { GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange, FString::Printf(TEXT("Need gather level %d"), RequiredLevel)); }
+					return;
+				}
+			}
+		}
 		bHasWarped = true;
+		if (UOverworldGameInstance* GI = Cast<UOverworldGameInstance>(GetGameInstance()))
+		{
+			GI->PendingEntryPoint = ArrivalPlayerStartTag;
+		}
 		FString Options;
 		if (!ArrivalPlayerStartTag.IsNone())
 		{

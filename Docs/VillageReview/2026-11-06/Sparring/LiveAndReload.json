@@ -1,0 +1,94 @@
+{
+  "success": true,
+  "reload_pass": true,
+  "slot": "VerifySparring_180cb984ddd841fc8b5b439cdee1f8b4",
+  "checks": [
+    "Fresh session preserves one roster adventurer",
+    "Fresh session preserves identity",
+    "Combat-earned Guard Stance survives",
+    "Guard practice survives",
+    "Magic practice survives",
+    "Successful evade practice survives",
+    "No encounter restarts after reload",
+    "No saved combat locks remain"
+  ],
+  "pretrained_fixture": true,
+  "stage": "load",
+  "elapsed": 9.51600000000326,
+  "creation_pass": {
+    "success": true,
+    "reload_pass": false,
+    "slot": "VerifySparring_180cb984ddd841fc8b5b439cdee1f8b4",
+    "checks": [
+      "Training slime is configured",
+      "Select Guild",
+      "Build Guild",
+      "Select Townhouse",
+      "Build Townhouse",
+      "Select Training",
+      "Build Training",
+      "Create isolated fixture member",
+      "J starts the turn-based encounter",
+      "Participant walked to the yard",
+      "Existing approved body is used",
+      "Enemy turn is held while selecting a command",
+      "Locked Guard Stance is rejected",
+      "Rejected command spends no TP",
+      "Defending reduces the actual slime hit",
+      "A real block unlocks Guard Stance",
+      "Learned Guard Stance reduces damage more",
+      "Focused Mind reduces guard TP cost",
+      "Arcane Bolt damages the visible slime",
+      "Spell consumes the reduced TP cost",
+      "First Aid heals before the next slime hit",
+      "Evasive Step prevents an incoming hit",
+      "Successful evasion earns practice",
+      "Slime defeat ends sparring",
+      "No permanent roster deaths",
+      "No training loot is generated",
+      "Village actor is released",
+      "Battle grants actual spell practice",
+      "HUD explains actions and result",
+      "F5 saves combat growth"
+    ],
+    "pretrained_fixture": true,
+    "stage": "heal",
+    "elapsed": 29.84299999999348,
+    "population": {
+      "resident_id": "6300AC3A497CDD2359AEFCB65BB469B4",
+      "actors": [
+        {
+          "id": "BE7AF58D4DC2775F28C2ED95AE5F30F8",
+          "job": "ES02_01"
+        },
+        {
+          "id": "C2942DD34244294C0A63B1903E57B9F0",
+          "job": "ExistingFarm"
+        },
+        {
+          "id": "6300AC3A497CDD2359AEFCB65BB469B4",
+          "job": "None"
+        }
+      ]
+    },
+    "battle_log": [
+      "The incoming strike was evaded.",
+      "Combat test student: Arcane Bolt hits for 30.",
+      "Slime strikes Combat test student for 12.0.",
+      "Combat test student: Arcane Bolt hits for 30.",
+      "Sparring won. No loot or permanent deaths."
+    ],
+    "expected": {
+      "id": "6300AC3A497CDD2359AEFCB65BB469B4",
+      "guard": 121.19999694824219,
+      "magic": 303.3000183105469,
+      "scout": 133.29580688476562
+    }
+  },
+  "expected": {
+    "id": "6300AC3A497CDD2359AEFCB65BB469B4",
+    "guard": 121.19999694824219,
+    "magic": 303.3000183105469,
+    "scout": 133.29580688476562
+  }
+}

@@ -31,6 +31,12 @@ class ISEKAIVILLAGE_API AProceduralMagicCircle : public AActor
 public:
 	AProceduralMagicCircle();
 
+	// Opt-in semantic rune overlay; existing player circles retain their presentation.
+	UFUNCTION(BlueprintCallable, Category="MagicCircle")
+	void ConfigureRunes(EElement Element, UTexture2D* Texture, FLinearColor Tint);
+	UPROPERTY(Transient) UTexture2D* SemanticRuneTexture = nullptr;
+	UPROPERTY(Transient) FLinearColor SemanticTint = FLinearColor::White;
+
 protected:
 	virtual void BeginPlay() override;
 

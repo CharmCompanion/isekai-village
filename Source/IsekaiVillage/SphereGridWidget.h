@@ -17,6 +17,7 @@ class ISEKAIVILLAGE_API USphereNodeClickTarget : public UObject
 
 public:
 	FName NodeID;
+	int32 DiscIndex = -1;
 	TWeakObjectPtr<USphereGridWidget> Owner;
 
 	UFUNCTION()
@@ -37,6 +38,7 @@ public:
 	void RebuildGrid();
 
 	void HandleNodeClicked(FName NodeID);
+	void HandleDiscClicked(int32 DiscIndex);
 
 protected:
 	UPROPERTY()
@@ -56,6 +58,12 @@ protected:
 
 	UPROPERTY()
 	TArray<TObjectPtr<UTextBlock>> NodeLabels;
+
+	UPROPERTY()
+	TArray<TObjectPtr<UButton>> DiscButtons;
+
+	UPROPERTY()
+	TArray<TObjectPtr<UTextBlock>> DiscLabels;
 
 	UPROPERTY()
 	TArray<TObjectPtr<USphereNodeClickTarget>> ClickTargets;

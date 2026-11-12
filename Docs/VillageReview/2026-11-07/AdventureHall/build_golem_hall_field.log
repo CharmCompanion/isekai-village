@@ -1,0 +1,38 @@
+Log file: C:\Users\RY0M\AppData\Local\UnrealBuildTool\Log.txt
+Executing up to 2 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (D:\DEVELOPMENT\Games\Tower of Elrhun).
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+UHT compiled-in object format Default
+UHT processed IsekaiVillageEditor in 10.5643651 seconds (0 generated files written)
+Building IsekaiVillageEditor...
+===== Toolchain Information =====
+Using ISPC compiler (T:\Program Files\UE_5.8\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.44.35228 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+[Adaptive Build] Excluded from ElrhunEquipmentEditor unity file: GolemClothTools.cpp
+[Adaptive Build] Excluded from ElrhunEquipment unity file: GolemEquipmentActor.cpp
+[Adaptive Build] Excluded from IsekaiVillage unity file: DungeonGraphData.cpp, AdventurerHub.cpp, BlacksmithForge.cpp, BuildEditComponent.cpp, BuildPiece.cpp, DungeonRuntime.cpp, DayBoard.cpp, FallingTree.cpp, GatherInventoryComponent.cpp, GatherPickup.cpp, GuildMasterDesk.cpp, IsekaiVillageCharacter.cpp, IsekaiVillageGameMode.cpp, IsekaiVillageHUD.cpp, IslandWarpPortal.cpp, LinchpinProp.cpp, LinchpinRecipe.cpp, MineOreVein.cpp, MineRuntime.cpp, MineShaft.cpp, PartyReserveComponent.cpp, ProceduralMagicCircle.cpp, RoomVolume.cpp, SlimeRunicMagic.cpp, SlimeRunicMagicTests.cpp, SphereGridDataAsset.cpp, SphereGridWidget.cpp, TownBuildingCatalog.cpp, TownConstructionTests.cpp, TownPlot.cpp, TreeChopComponent.cpp, VillageCitizen.cpp, VillageRuntime.cpp, VillageGolemCitizen.cpp, VillageGolemLoop.cpp, VillageGolemTests.cpp, GolemNeeds.cpp, GolemSparring.cpp, GolemSparringTests.cpp, GolemHall.cpp, GolemHallWidget.cpp, GolemHallTests.cpp
+=================================
+Using Unreal Build Accelerator local executor to run 12 action(s)
+  CPU 8 physical cores, 16 logical cores
+  Memory 31.87 GB physical, 24.17 GB/53.87 GB committed
+  UBA Storage capacity 40 GB
+[1/12] Compile [x64] GolemHallTests.cpp [NoUba]
+[2/12] Compile [x64] GolemHall.cpp [NoUba]
+[3/12] Compile [x64] GolemSparring.cpp [NoUba]
+[4/12] Compile [x64] GolemHallWidget.cpp [NoUba]
+[5/12] Compile [x64] GolemSparringTests.cpp [NoUba]
+[6/12] Compile [x64] IsekaiVillageHUD.cpp [NoUba]
+[7/12] Compile [x64] IsekaiVillageCharacter.cpp [NoUba]
+[8/12] Compile [x64] VillageGolemCitizen.cpp [NoUba]
+[9/12] Compile [x64] Module.IsekaiVillage.cpp [NoUba]
+[10/12] Link [x64] UnrealEditor-IsekaiVillage.lib [NoUba]
+[11/12] Link [x64] UnrealEditor-IsekaiVillage.dll [NoUba]
+[12/12] WriteMetadata IsekaiVillageEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 418.28 seconds
+Output binary: T:\Program Files\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 434.08 seconds
+Trace written to file C:\Users\RY0M\AppData\Local\UnrealBuildTool\Trace.uba with size 46.0kb

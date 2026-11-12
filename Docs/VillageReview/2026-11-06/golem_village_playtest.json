@@ -1,0 +1,158 @@
+{
+  "success": true,
+  "reload_pass": true,
+  "save_slot": "VerifyGolemVillage_5577442aff9b40d493fd9e55d63d3bbf",
+  "checks": [
+    "current village uses golem population",
+    "fresh process restored one worker",
+    "fresh process preserved identity",
+    "fresh process preserved home",
+    "fresh process preserved job",
+    "fresh process restored wood",
+    "fresh process restored coins",
+    "fresh process restored shop wood",
+    "fresh process restored till",
+    "fresh process restored grid points",
+    "fresh process has no duplicate actors"
+  ],
+  "expected": {
+    "id": "CAD007274B555A09EAC66583DE765F4A",
+    "home": "ES02_15",
+    "shop": "ES02_26",
+    "wood": 31,
+    "coins": 2,
+    "shop_wood": 5,
+    "shop_coins": 38,
+    "sphere_points": 9
+  },
+  "creation_pass": {
+    "success": true,
+    "reload_pass": false,
+    "save_slot": "VerifyGolemVillage_5577442aff9b40d493fd9e55d63d3bbf",
+    "checks": [
+      "current village uses golem population",
+      "all 28 parcels begin available",
+      "B opens catalogue",
+      "inherited home is selected",
+      "T placed inherited home",
+      "deed is free",
+      "house alone creates no shopkeeper",
+      "keyboard advances catalogue 0",
+      "keyboard advances catalogue 1",
+      "keyboard advances catalogue 2",
+      "keyboard advances catalogue 3",
+      "keyboard advances catalogue 4",
+      "R rotates selected building",
+      "T placed shop",
+      "purchase paid exact materials",
+      "housing creates one worker",
+      "one worker actor exists",
+      "worker uses approved body",
+      "worker has assigned home and shop",
+      "worker walked to shop without teleport",
+      "worker followed street route",
+      "worker reached work",
+      "T sale consumes wood",
+      "T sale pays coins",
+      "Y purchase restores wood",
+      "Y purchase spends coins",
+      "F5 saved successfully",
+      "real trade state saved"
+    ],
+    "input_trace": [
+      {
+        "key": "B",
+        "catalogue_open": false,
+        "selected": 0
+      },
+      {
+        "key": "T",
+        "catalogue_open": true,
+        "selected": 0
+      },
+      {
+        "key": "PageDown",
+        "catalogue_open": true,
+        "selected": 0
+      },
+      {
+        "key": "PageDown",
+        "catalogue_open": true,
+        "selected": 1
+      },
+      {
+        "key": "PageDown",
+        "catalogue_open": true,
+        "selected": 2
+      },
+      {
+        "key": "PageDown",
+        "catalogue_open": true,
+        "selected": 3
+      },
+      {
+        "key": "PageDown",
+        "catalogue_open": true,
+        "selected": 4
+      },
+      {
+        "key": "R",
+        "catalogue_open": true,
+        "selected": 5
+      },
+      {
+        "key": "T",
+        "catalogue_open": true,
+        "selected": 5
+      },
+      {
+        "key": "B",
+        "catalogue_open": true,
+        "selected": 5
+      },
+      {
+        "key": "T",
+        "catalogue_open": false,
+        "selected": 5
+      },
+      {
+        "key": "Y",
+        "catalogue_open": false,
+        "selected": 5
+      },
+      {
+        "key": "T",
+        "catalogue_open": false,
+        "selected": 5
+      },
+      {
+        "key": "F5",
+        "catalogue_open": false,
+        "selected": 5
+      }
+    ],
+    "movement_progress": {
+      "seconds": 28.71899999998277,
+      "position": [
+        23461.167129160418,
+        6101.837531610253,
+        2732.26123046875
+      ],
+      "blocked": false,
+      "route_index": 56,
+      "route_points": 58
+    },
+    "expected": {
+      "id": "CAD007274B555A09EAC66583DE765F4A",
+      "home": "ES02_15",
+      "shop": "ES02_26",
+      "wood": 31,
+      "coins": 2,
+      "shop_wood": 5,
+      "shop_coins": 38,
+      "sphere_points": 9
+    },
+    "commute_seconds": 33.89100000000326
+  },
+  "worker_mesh": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Mage.SK_Native_BodyA_Mage"
+}

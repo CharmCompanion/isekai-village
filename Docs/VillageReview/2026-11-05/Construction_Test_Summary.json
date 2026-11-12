@@ -1,0 +1,9 @@
+{
+  "test": "IsekaiVillage.Construction.AuthoredPlots",
+  "success": true,
+  "test_count": 1,
+  "failed": 0,
+  "succeeded_with_warnings": 1,
+  "warning_note": "Temporary automation world actor cleanup reports missing world context.",
+  "duration_seconds": 0.4847989082336426
+}

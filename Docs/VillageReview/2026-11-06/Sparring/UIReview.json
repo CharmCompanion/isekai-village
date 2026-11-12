@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "slot": "VerifySparringUI_1d36a09ab8cd4121ad8986e05d8bc862",
+  "stage": "ending",
+  "elapsed": 19.14000000001397,
+  "reported_at": 503028.015,
+  "screenshot": "C:\\Users\\RY0M\\Documents\\Codex\\2026-11-03\\referenced-chatgpt-conversation-this-is-an\\outputs\\Elrhun_Sparring_UI.png",
+  "hud_text": "TRAINING SPARRING | J stop / close\n> Lumi  HP 100/100  TP 40.0/40\nTraining slime  HP 90/90\nReady order: Lumi > Slime\n1 Strike   2 Defend (no TP cost)\nTP costs: Guard 4 / Bolt 8 / Aid 6 / Evade 5\n3 Guard Stance   4 Arcane Bolt\n5 First Aid   6 Evasive Step\nFirst Aid selects the most injured living ally.\nAdventurers are walking to the training yard. J cancels.\nSparring begins. Choose an action when your adventurer is ready.\n"
+}

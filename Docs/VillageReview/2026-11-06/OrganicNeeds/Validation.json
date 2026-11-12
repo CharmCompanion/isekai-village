@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "date": "2026-11-06",
+  "build": "Succeeded",
+  "map": "/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky",
+  "organic_needs_enabled": true,
+  "tests": [
+    {
+      "name": "IsekaiVillage.Construction.AuthoredPlots",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Golems.AdventurerPracticePersistence",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Golems.WantsAndLearning",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Magic.SlimeRunicRules",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.GolemShopLoop",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.HallDeliveries",
+      "result": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.WorkerProduction",
+      "result": "Success",
+      "errors": 0
+    }
+  ],
+  "live_checks": 24,
+  "fresh_session_checks": 7,
+  "example": "Practice student | I want to practise Guard. Recharge need 36 / Curiosity 73 / Company 12 | Learned passive Enduring Core through Guard.",
+  "learning_and_identity_preserved": {
+    "student": "Adv_1",
+    "id": "FF2CEC30493D440C8E8C3CBE334FDB73",
+    "practice": 300.11865234375,
+    "diligence": 0.4195778965950012
+  },
+  "test_slot_removed": true,
+  "normal_save_slot_preserved": true,
+  "map_sha256": "54e789204aced2bd149333bbddd49b7dd1a1dcf1545f394c52d24f891b33679e",
+  "limits": [
+    "The existing reserve has no adventurer combat controller; active skill battle effects and equipment must be connected separately.",
+    "Practice is physical arrival plus timed effort; dedicated training/social animations are not supplied.",
+    "The resource-based adventurer creation screen remains separate work; this uses the existing reserve and spare housing.",
+    "Live review used accelerated time and walking in a headless editor; it does not certify visual polish or packaged performance."
+  ]
+}

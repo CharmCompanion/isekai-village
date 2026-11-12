@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "reload_pass": false,
+  "slot": "VerifyGolemHall_3bffa8993d0e41b4a7355345ffee1511",
+  "checks": [
+    "All eight existing outfits configured",
+    "Select Guild",
+    "Build Guild",
+    "Select Townhouse",
+    "Build Townhouse",
+    "Select Cottage",
+    "Build Cottage",
+    "Select Training",
+    "Build Training",
+    "H opens the real creation menu",
+    "Menu shows resource and body controls",
+    "Creation button creates Lumi",
+    "Selected class applied Lumi",
+    "Selected body applied Lumi",
+    "Entered name applied Lumi",
+    "New golem must learn skills Lumi",
+    "Creation button creates Niri",
+    "Selected class applied Niri",
+    "Selected body applied Niri",
+    "Entered name applied Niri",
+    "New golem must learn skills Niri",
+    "Creation button creates Mae",
+    "Selected class applied Mae",
+    "Selected body applied Mae",
+    "Entered name applied Mae",
+    "New golem must learn skills Mae",
+    "Exact stone charged for three golems",
+    "Exact wood charged for three golems",
+    "Creation disables without another free bed or recipe",
+    "Bench button removes first member",
+    "Make active selects the preferred member",
+    "Only one companion is active at current capacity",
+    "Close button dismisses menu",
+    "F5 saves created roster"
+  ],
+  "stage": "open",
+  "elapsed": 14.125,
+  "expected": {
+    "ids": [
+      "7C7F4D71477DF15BA83FFF95439B777F",
+      "4D4925D342D7FA9C83643D89CF069660",
+      "CA50AD534A8B873D3376D3895E021AA2"
+    ],
+    "classes": [
+      "Mage",
+      "Tank",
+      "Healer"
+    ],
+    "female": [
+      true,
+      false,
+      true
+    ],
+    "active": [
+      false,
+      true,
+      false
+    ],
+    "stone": 0,
+    "wood": 50,
+    "diligence": [
+      0.7146130204200745,
+      0.46001142263412476,
+      0.8612396121025085
+    ]
+  }
+}

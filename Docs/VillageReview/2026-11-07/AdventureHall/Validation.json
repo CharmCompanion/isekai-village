@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "date": "2026-11-07",
+  "project": "D:\\DEVELOPMENT\\Games\\Tower of Elrhun",
+  "milestone": "Adventure hall resource creation and active-party selection",
+  "build": "Succeeded; final UI layout build succeeded",
+  "native_tests": 11,
+  "native_failed": 0,
+  "native_tests_with_warnings": 1,
+  "live_checks": 34,
+  "fresh_session_checks": 12,
+  "outfit_combinations": 8,
+  "normal_slot_preserved": true,
+  "rendered_ui_review": true,
+  "recipe": {
+    "Stone": 6,
+    "Wood": 4,
+    "free_beds": 1
+  },
+  "known_limits": [
+    "Tower expedition/death/soul inheritance not implemented by this milestone",
+    "One older construction test emits world-cleanup warnings",
+    "Older slime animation assets emit missing-skeleton warnings on first cold loading; normal village startup and current native combat tests pass"
+  ],
+  "evidence": {
+    "live": "Live.json",
+    "reload": "Reload.json",
+    "native": "NativeTests.json",
+    "setup": "Setup.json",
+    "ui": "UIReview.json",
+    "screenshot": "Controls.png"
+  }
+}

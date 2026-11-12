@@ -1,0 +1,1163 @@
+{
+  "success": true,
+  "lights": [
+    {
+      "actor": "Sun - Warm Coastal Morning",
+      "class": "DirectionalLightComponent",
+      "intensity": 5.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        0.0,
+        0.0,
+        5000.0
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF778060) {pitch: -35.000000, yaw: -0.000000, roll: -38.000000}>"
+    },
+    {
+      "actor": "Seabreeze Inn",
+      "class": "PointLightComponent",
+      "intensity": 3000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3078.6941137190693,
+        12509.785630686933,
+        2947.4413342120943
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF77A540) {pitch: 0.000000, yaw: -15.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Seabreeze Inn",
+      "class": "PointLightComponent",
+      "intensity": 5000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3078.6941137190693,
+        12509.785630686933,
+        2947.4413342120943
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5410) {pitch: 0.000000, yaw: -15.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "General Store",
+      "class": "PointLightComponent",
+      "intensity": 5000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7635.3676542104,
+        9633.371219292956,
+        2665.1814432366345
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5190) {pitch: 0.000000, yaw: 45.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "General Store",
+      "class": "PointLightComponent",
+      "intensity": 5000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7635.3676542104,
+        9633.371219292956,
+        2665.1814432366345
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5140) {pitch: 0.000000, yaw: 45.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "General Store",
+      "class": "PointLightComponent",
+      "intensity": 5000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7635.3676542104,
+        9633.371219292956,
+        2665.1814432366345
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5690) {pitch: 0.000000, yaw: 45.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "Cottage A",
+      "class": "PointLightComponent",
+      "intensity": 19075.275390625,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10267.200713949464,
+        -1128.414794603575,
+        2620.3362067682588
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B56E0) {pitch: 0.000000, yaw: 105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "Cottage B",
+      "class": "PointLightComponent",
+      "intensity": 5967.5810546875,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2713.775088549337,
+        -8394.721655286927,
+        2474.9223979587905
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5730) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "Cottage C",
+      "class": "PointLightComponent",
+      "intensity": 2000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2918.4033650279457,
+        -8554.942358491677,
+        2480.240572966415
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5780) {pitch: 0.000000, yaw: -165.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Ancient Magical Seal",
+      "class": "PointLightComponent",
+      "intensity": 75.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        23644.53125,
+        45575.78125,
+        11909.0625
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5820) {pitch: 0.000000, yaw: -25.392525, roll: 0.000000}>"
+    },
+    {
+      "actor": "Ancient Magical Seal",
+      "class": "SpotLightComponent",
+      "intensity": 500000.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        23644.53125,
+        45575.78125,
+        11909.0625
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B58C0) {pitch: 0.000000, yaw: -25.392525, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -37320.72915357547,
+        -8610.56656982567,
+        5880.595703125
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5960) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -39406.944557292016,
+        -10251.383752041813,
+        5895.0
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5A00) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -40820.53329471964,
+        -12793.783847606024,
+        5917.705078124999
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5AA0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -41603.38253267412,
+        -15389.50487164875,
+        5923.359375
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5B40) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -41667.98951868203,
+        -17769.93451751624,
+        5902.509765625
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5BE0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -40665.67213169477,
+        -19778.202801255535,
+        5843.124999999999
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5C80) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -33218.72513018019,
+        29852.48068112154,
+        7127.070312500001
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5D20) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -34166.968510566774,
+        30297.19725823004,
+        7149.7265625
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5DC0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -35011.116018703826,
+        30792.937989572692,
+        7170.439453125002
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5E60) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -35780.65146040357,
+        31342.645004452403,
+        7190.478515625002
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5F00) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -36288.06771307649,
+        31928.52588351735,
+        7208.30078125
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B5FA0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        23622.5238891386,
+        44726.23083338901,
+        11797.0703125
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6040) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        24117.865194023143,
+        45653.31438158728,
+        11819.726562500002
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B60E0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        24189.350326717333,
+        46705.1421696654,
+        11840.439453125
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6180) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        24080.20216840352,
+        47492.431748047275,
+        11860.478515624998
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6220) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "Tunnel lantern glow",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        24301.843809696136,
+        48008.27417905508,
+        11878.30078125
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B62C0) {pitch: 0.000000, yaw: 0.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3330.7879138757567,
+        12159.916525097267,
+        3339.875894726532
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6360) {pitch: -0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3473.8838789385995,
+        12703.877174986546,
+        3344.7548647225703
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6400) {pitch: -0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3223.4798534101174,
+        13133.252198079574,
+        3004.3648686424267
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B64A0) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight1",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        3258.766171027696,
+        13181.824864245697,
+        3594.814690116708
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6540) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2890.570404588508,
+        11807.698708512851,
+        3720.7786239737356
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B65E0) {pitch: -0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2382.5452409700993,
+        12786.098364720589,
+        3507.067320640855
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6680) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight1",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2317.4907482600993,
+        12541.847304873903,
+        3502.516307888446
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6720) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2353.1556025074888,
+        12472.245815140373,
+        3016.016709762081
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B67C0) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2427.1003462163717,
+        12718.547786393885,
+        3016.016709762081
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6860) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2318.044598622664,
+        12618.521069032182,
+        3562.513470166212
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6900) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2593.4464089757557,
+        12062.044319353925,
+        3845.143359020022
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B69A0) {pitch: -0.000000, yaw: -75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -3003.6456687558875,
+        12309.339802272301,
+        3013.9840134185124
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6A40) {pitch: 0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -3061.35109182989,
+        12550.04227708472,
+        3012.7047118788864
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6AE0) {pitch: 0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7241.641605943958,
+        9908.572912957237,
+        3053.7617613360835
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6B80) {pitch: 0.000000, yaw: 45.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7366.07102258315,
+        10028.668592655224,
+        3053.720367237036
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6C20) {pitch: 0.000000, yaw: 45.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7775.358194136141,
+        9487.767705182645,
+        2799.7803728730446
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6CC0) {pitch: 0.000000, yaw: -135.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -7638.305890554244,
+        9345.227369679797,
+        2795.9442469428477
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6D60) {pitch: 0.000000, yaw: -135.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10309.85306106294,
+        5127.664959103932,
+        2727.069279352643
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6E00) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -9907.687466235277,
+        5019.905012746277,
+        2727.069279352643
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6EA0) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10712.596671521751,
+        5247.427031980197,
+        2723.977900726176
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6F40) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10550.79537502314,
+        4575.805395289921,
+        2724.893627770247
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B6FE0) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10865.575760566877,
+        4658.765798879209,
+        2722.2983143275924
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7080) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10053.34653844751,
+        4456.971304755402,
+        2729.528165740995
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7120) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10244.060373548347,
+        4474.800195399137,
+        3354.853932077116
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B71C0) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight1",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10787.222514688614,
+        4633.249099978402,
+        3363.5437407630643
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7260) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10503.121239770202,
+        -247.9474271156522,
+        2976.823461330584
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7300) {pitch: 0.000000, yaw: 105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10100.121507424892,
+        -995.5185221990678,
+        2734.7871341156856
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B73A0) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10151.105700118313,
+        -798.1796180813642,
+        2737.860635085272
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7440) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10242.424658777105,
+        -466.02186534037423,
+        2737.286582660283
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B74E0) {pitch: 0.000000, yaw: 15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10613.153118779264,
+        -574.8167698809649,
+        2734.273198336999
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7580) {pitch: 0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10589.436339426586,
+        -725.3442703819242,
+        3121.392628863192
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7620) {pitch: 0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10700.365942695033,
+        -1248.945570308472,
+        3025.419358415379
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B76C0) {pitch: 0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10271.30429066576,
+        -1325.0509306443294,
+        2735.045765442945
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7760) {pitch: 0.000000, yaw: -75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight0",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10497.305966957067,
+        -1386.3381211024875,
+        2736.22290282936
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7800) {pitch: 0.000000, yaw: -75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight0",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -10344.576886318313,
+        -1378.2639274302883,
+        3080.1725042169137
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B78A0) {pitch: 0.000000, yaw: -75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -3036.206738856085,
+        -8944.852148530119,
+        2585.510162405461
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7940) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -3041.6084022331274,
+        -8860.939887085784,
+        2901.1056081969627
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B79E0) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -3141.1688217212813,
+        -8281.122335657441,
+        2786.138771233838
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7A80) {pitch: 0.000000, yaw: 165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2590.0368971316184,
+        -7965.813236672811,
+        2790.1028592959087
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7B20) {pitch: 0.000000, yaw: 75.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2364.195795567473,
+        -8496.288772686878,
+        2582.5863469179094
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7BC0) {pitch: 0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight6",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2293.0924102558006,
+        -8507.441340721834,
+        2853.2924500625973
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7C60) {pitch: 0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2710.964382508784,
+        -9028.879060241046,
+        2582.752483790801
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7D00) {pitch: 0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight3",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2673.6737435123673,
+        -8899.183927514907,
+        2579.134887896764
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7DA0) {pitch: 0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight1",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2677.7345441192324,
+        -8981.753518334664,
+        2902.1921334703707
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7E40) {pitch: 0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight1",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        -2898.83292646414,
+        -9085.366597252436,
+        2581.228139941946
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7EE0) {pitch: 0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight8",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2517.7668045833557,
+        -8668.01294169675,
+        2901.484605533767
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7B7F80) {pitch: -0.000000, yaw: -165.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight8",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        2786.314284100378,
+        -8061.976245687396,
+        2884.0572843585596
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC060) {pitch: 0.000000, yaw: 105.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight9",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        10487.946735041205,
+        -1408.2445127848805,
+        3374.923095759038
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC100) {pitch: -0.000000, yaw: -105.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight8",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        11160.029345240855,
+        -973.106111713873,
+        3502.873113731811
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC1A0) {pitch: -0.000000, yaw: -15.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight10",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12639.026798166346,
+        -10202.33435608034,
+        2836.605975919292
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC240) {pitch: -0.000000, yaw: -140.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight9",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12536.52573923108,
+        -10081.26796478401,
+        2839.0605378869004
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC2E0) {pitch: -0.000000, yaw: -140.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight9",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12877.43983245899,
+        -10166.515873970824,
+        2599.189167309216
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC380) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12914.31200784512,
+        -10187.507569285475,
+        2940.8342308383717
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC420) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12623.177843089374,
+        -9849.389612872585,
+        2591.651396229074
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC4C0) {pitch: 0.000000, yaw: 130.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight7",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        12656.869922396896,
+        -9395.861497906626,
+        2924.5551687596862
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC560) {pitch: 0.000000, yaw: 130.000000, roll: 0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight5",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13286.468879937203,
+        -9437.49650771344,
+        2599.19552229642
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC600) {pitch: 0.000000, yaw: 40.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight4",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13393.764886711637,
+        -9565.366909257884,
+        2599.19552229642
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC6A0) {pitch: 0.000000, yaw: 40.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13384.59017114932,
+        -9470.27850667609,
+        2795.644607050102
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC740) {pitch: 0.000000, yaw: 40.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight2",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13351.497971124376,
+        -10097.05463746465,
+        2598.63107501641
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC7E0) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight0",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13236.577549224054,
+        -10193.484321095946,
+        2598.63107501641
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC880) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight0",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13329.703104734703,
+        -10194.534375963165,
+        2863.6674630633484
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC920) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    },
+    {
+      "actor": "BP_FX_RectLight0",
+      "class": "RectLightComponent",
+      "intensity": 2200.0,
+      "visible": true,
+      "affects_world": true,
+      "location": [
+        13397.431548050541,
+        -9780.278011203618,
+        2935.7787348370257
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000280FF7CC9C0) {pitch: -0.000000, yaw: -50.000000, roll: -0.000000}>"
+    }
+  ],
+  "player_view_saved": true
+}

@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "looks": {
+    "BodyA_Tank": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Tank.SK_Native_BodyA_Tank",
+    "BodyA_Mage": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Mage.SK_Native_BodyA_Mage",
+    "BodyA_Ranger": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Ranger.SK_Native_BodyA_Ranger",
+    "BodyA_Healer": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Healer.SK_Native_BodyA_Healer",
+    "BodyB_Tank": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyB_Tank.SK_Native_BodyB_Tank",
+    "BodyB_Mage": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyB_Mage.SK_Native_BodyB_Mage",
+    "BodyB_Ranger": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyB_Ranger.SK_Native_BodyB_Ranger",
+    "BodyB_Healer": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyB_Healer.SK_Native_BodyB_Healer"
+  },
+  "normal_slot": "ElRuhnSky_Village02"
+}

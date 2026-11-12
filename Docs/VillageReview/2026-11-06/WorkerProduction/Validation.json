@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "date": "2026-11-06",
+  "map": "/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky",
+  "build": "Succeeded",
+  "automated_tests": [
+    {
+      "name": "IsekaiVillage.Construction.AuthoredPlots",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Magic.SlimeRunicRules",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.GolemShopLoop",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.HallDeliveries",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.WorkerProduction",
+      "state": "Success",
+      "errors": 0
+    }
+  ],
+  "live_checks": 21,
+  "fresh_process_checks": 5,
+  "delivered_store_before_collection": {
+    "Wheat": 8,
+    "Stone": 4,
+    "Fish": 6,
+    "Wood": 3,
+    "Bread": 2,
+    "ToolParts": 1
+  },
+  "expected_saved_inventory": {
+    "Stone": 4,
+    "Fish": 6,
+    "Wood": 145,
+    "Wheat": 8,
+    "Bread": 2,
+    "ToolParts": 1
+  },
+  "worker_jobs": [
+    "Hall courier",
+    "Farmer",
+    "Baker",
+    "Smith",
+    "Warehouse hauler"
+  ],
+  "source_items": [
+    "Stone",
+    "Fish",
+    "Wood"
+  ],
+  "worker_count": 5,
+  "all_worker_ids_restored": true,
+  "normal_player_save_modified_by_tests": false,
+  "test_slot_cleaned": true,
+  "map_sha256": "757121e0deeb0d7707065d02dec820b9828f71cec80904e3ea809b2a6712a075",
+  "limits": [
+    "Basic resources are collected at labelled village depots; direct quarry/fishing/woodcutting actor work and animations remain future work.",
+    "Bread and tool parts are production outputs; food/tool consumption is not implemented in this milestone.",
+    "Live movement was verified with accelerated walking and time in a headless editor; visual and packaged-game performance was not certified."
+  ]
+}

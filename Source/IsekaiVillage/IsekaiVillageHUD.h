@@ -21,6 +21,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SphereGrid")
 	void ToggleSphereGrid();
 
+	void RefreshSphereGrid();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SphereGrid")
 	TSubclassOf<USphereGridWidget> SphereGridWidgetClass;
 
@@ -37,5 +39,6 @@ private:
 	void DrawElementIndicator(class AIsekaiVillageCharacter* Character);
 	void DrawFocusModeFlash(class AIsekaiVillageCharacter* Character);
 	void DrawSphereGrid(class AIsekaiVillageCharacter* Character);
+	void DrawBuildModeOverlay(class AIsekaiVillageCharacter* Character);
 	void SetSphereGridInput(bool bOpen);
 };

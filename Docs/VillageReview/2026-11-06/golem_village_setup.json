@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "map": "/Game/IsekaiVillage/AdventureWorld/Maps/Map_ElRuhnSky.Map_ElRuhnSky",
+  "street_nodes": 4423,
+  "street_edges": 4440,
+  "looks": {
+    "male": {
+      "mesh": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyA_Mage.SK_Native_BodyA_Mage",
+      "idle": "/Game/StylizedCharacters/Demo_Levels/Third_Person/RetargetedAnimations/BodyA/BodyA_Idle_Retargeted.BodyA_Idle_Retargeted",
+      "walk": "/Game/StylizedCharacters/Demo_Levels/Third_Person/RetargetedAnimations/BodyA/BodyA_Walk_InPlace_Retargeted.BodyA_Walk_InPlace_Retargeted"
+    },
+    "female": {
+      "mesh": "/Game/Elrhun/Golems/PlayerBody/Outfits/SK_Native_BodyB_Mage.SK_Native_BodyB_Mage",
+      "idle": "/Game/StylizedCharacters/Demo_Levels/Third_Person/RetargetedAnimations/BodyB/BodyB_Idle_Retargeted.BodyB_Idle_Retargeted",
+      "walk": "/Game/StylizedCharacters/Demo_Levels/Third_Person/RetargetedAnimations/BodyB/BodyB_Walk_InPlace_Retargeted.BodyB_Walk_InPlace_Retargeted"
+    }
+  },
+  "save_slot": "ElRuhnSky_Village02"
+}

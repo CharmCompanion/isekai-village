@@ -3,6 +3,9 @@
 #include "GuildMasterDesk.h"
 #include "IsekaiVillageCharacter.h"
 #include "PartyReserveComponent.h"
+#include "VillageRuntime.h"
+#include "VillageCitizen.h"
+#include "EngineUtils.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -48,24 +51,29 @@ bool AGuildMasterDesk::TryHire(AIsekaiVillageCharacter* Character)
 		return false;
 	}
 
-	const bool bHired = Character->PartyReserve->HireAdventurer(FText::FromString(TEXT("Guild Recruit")));
-	if (GEngine)
+	AVillageRuntime* Village = nullptr;
+	if (UWorld* World = GetWorld())
 	{
-		if (bHired)
+		for (TActorIterator<AVillageRuntime> It(World); It; ++It)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Cyan,
-				FString::Printf(TEXT("Hired %s  (%d/%d reserve, %d active)"),
-					TEXT("Guild Recruit"),
-					Character->PartyReserve->Reserve.Num(),
-					Character->PartyReserve->MaxReserve,
-					Character->PartyReserve->GetActiveCompanionCount()));
-		}
-		else
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Guild roster is full."));
+			Village = *It;
+			break;
 		}
 	}
-	return bHired;
+	AVillageCitizen* Candidate = Village ? Village->NearestAt(EVillagePlace::Guild, 900.0f) : nullptr;
+	if (!Candidate)
+	{
+		Candidate = Village ? Village->NearestCitizen(GetActorLocation(), 1200.0f) : nullptr;
+	}
+	if (Candidate && (Candidate->Mind.Job == ECitizenJob::Adventurer || Candidate->Mind.bHasAttack))
+	{
+		return Candidate->TryPlayerOffer(Character);
+	}
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.4f, FColor::Orange, TEXT("No one at the hall will walk with you yet."));
+	}
+	return false;
 }
 
 void AGuildMasterDesk::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

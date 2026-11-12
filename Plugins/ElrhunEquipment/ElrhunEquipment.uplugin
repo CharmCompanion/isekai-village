@@ -1,0 +1,1 @@
+{"FileVersion":3,"Version":1,"VersionName":"1.0","FriendlyName":"Elrhun Equipment","CanContainContent":false,"Modules":[{"Name":"ElrhunEquipment","Type":"Runtime","LoadingPhase":"Default"},{"Name":"ElrhunEquipmentEditor","Type":"Editor","LoadingPhase":"Default"}],"Plugins":[{"Name":"ChaosCloth","Enabled":true}]}

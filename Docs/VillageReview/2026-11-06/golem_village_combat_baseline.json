@@ -1,0 +1,13 @@
+{
+  "baseline_build": "Original project module from Saved/VillageLoopBackup/20261105_213008",
+  "original_test_state": "Fail",
+  "unchanged_failures": true,
+  "error_count": 5,
+  "errors": [
+    "Expected 'Burn refreshes, does not stack, clamps long frame at expiry' to be 91.000000, but it was 100.000000 and outside tolerance 0.000100.",
+    "Expected 'Poison total' to be 71.000000, but it was 100.000000 and outside tolerance 0.000100.",
+    "Expected 'Ward overflow reaches health' to be 85.000000, but it was 100.000000 and outside tolerance 0.000100.",
+    "Expected 'Swept bolt hits once even across a long frame' to be 67.000000, but it was 100.000000 and outside tolerance 0.000100.",
+    "Expected 'Poison persists when caster is removed' to be 63.000000, but it was 100.000000 and outside tolerance 0.000100."
+  ]
+}

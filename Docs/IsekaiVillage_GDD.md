@@ -3,14 +3,14 @@
 > This doc is the single source of truth. All prior `Docs/unreal_anime_mage_master_spec.md` / `cursor_migration_context.md` are **archived** - new magic has no `GrimoirePage` deck, no `CompileHandConfig` `Q/E` fusions, no `ElementFatigue/Density/EnvAffinity`.
 
 ## 1. High Concept
-Isekai reincarnated villager. Slice-of-life 20min day (farm/craft/shop/inn) -> weekly horde from hidden dungeon (forest/mountain/waterfall sealed 15-20yrs, barrier thins). Loop: `Day tasks (short missions) -> Trust/SP -> Sphere Grid -> Weekly Horde -> Town grows Village -> Large Town (Barons Rank B quests) -> End: Expedition clear dungeon core -> Postgame: Design dungeon + Kingdom DLC`.
+Isekai reincarnated town-builder & guild architect (*My Life as a King* meets *Final Fantasy X*). Slice-of-life village days (build/craft/shop/inn/train/research) feed Town growth, **Adventure Guild Rank (`D -> C -> B -> A -> S`)**, and Sphere Grid power to ascend **Floors 1–100** of the living Tower and defeat its **Final Boss: the Crazed Immortal Wizard**. Loop: `Build & staff village -> Day slips & town services -> Trust / Guild Rank / SP -> Sphere Grid & Forge -> Ascend Floors 1-100 -> Beat Crazed Immortal Wizard -> Postgame NG+ negative Echo floors`.
 Think `Tales of Symphonia artes` + `Adventure Quest 64 +1 stats` + `Farming Life` tool, not `Loner Life` titles.
 
 ## 2. Core Loop & Pacing
 - Day 6am-6pm: 3-4 short missions `Billy Hatcher` style `Fetch 5 logs / Repair wall 30% / Cook 3` `+1 SP +5 Trust` `WBP_Shop` board.
 - Night: regen, inn sleep/food `ECONOMY` handles.
-- Week: 1 horde `4min` `Basic_VFX` slimes, scales `15 -> 40` mixed, week 13 `2/week`. `Large Town` adds `Baron` Rank B quests.
-- Endgame: Expedition finds waterfall cave `IslandTerrainActor.cpp:TowerPlateau 2000,0,450` behind mountain ridge, clear core -> unlock `DUNGEON MASTER` edit.
+- No Horde / Town Defense Raids (cut): gameplay is strictly Town Building + Adventure Guild Rank + Floor-by-Floor Tower Ascent (`TOWER_FLOOR_DESIGN.md`).
+- Endgame (`Floor 100`): Ascend all 100 floors of the adaptive tower and defeat the **Crazed Immortal Wizard** -> unlock NG+ negative floors (`Echo Depth`) + `SOULSMITH` / `ARTIFICER` Endgame DLC.
 
 ## 3. Party / Reserve (No Grimoire)
 - Start solo `AIsekaiVillageCharacter` `Source/IsekaiVillage/IsekaiVillageCharacter.h` (renamed from `SpellCraftCharacter`).
@@ -32,21 +32,21 @@ Think `Tales of Symphonia artes` + `Adventure Quest 64 +1 stats` + `Farming Life
 
 ### Town Main 3
 - **CRAFTING** 10 `Repair 50% faster / Craft wood sword / +Inv`
-- **DOMAIN** 10 `Patrol speed / Gate HP +15% / Trust +5` `EarthWallConstruct Lifetime 12->18`
+- **DOMAIN+Architect merged** 14 `Pure Town Boosts` `10 stat / 4 skill` - `Stats (x10): Build Wood Discount +10% x3 / Town Trust +5 x2 / Town Attraction (Safety+Coin) +10% x2 / Golem Worker Pace & Stamina +12% x2 / Haul Cap Inv+10 x1` | `Skills (x4): Expanded Lofts (+2 beds per house upgrade) / Civic Watch (+WallIntegrity & faster CrimeHeat decay) / Hall Charter (+1 courier cargo & +1 Farm/Bakery/Smith batch output) / Kingdom Charter (unlocks Large Town 4-node & Kingdom 8-node tier + Castle/Academy ActivePartyCap)`
 - **ECONOMY+Hospitality merged** 14 `Shop Lv1 Haggle -10%/+10% / Inn Revive -30% / Bathhouse heal tick / Festival +15 Trust / Vault +20 / Bulk Carry` `8 stat /6 skill`
 
 ### DLC 4 Endgame Fantasy (like Summons breeding)
 - **RANGER** 10 `Bow Spread 14° / Stealth Crouch 60% x1.5 dmg / Trap ASspellMine 90 / Hunt`
 - **SUMMONS** 14 `Tales Dawn` monster raise `egg->base->evolve 3 branches` `MonsterFamily DataAsset`
-- **DUNGEON MASTER** 12 own circle `6 stat 6 skill` - `Carve Room 3x3 BlockAll / Hallway 1x6 Corridor / Boss Room 5x5 Boss spawn 2xHP / Vault Artifact +5% yield / Share Sigil Export .sav multiplayer teams challenge` `StylizedIsland Wall spline SplineEffect2` replaces weak `Labyrinth`.
-- **ARCHITECT** 10 `Tier locks: Village wood free / Large Town stone requires 4 nodes / Kingdom Castle requires 8 nodes DLC` `AdvancedVillagePack/Fantastic_Village_Pack` `Baron->Duke quests Rank A` `Build Speed +10% / Inv+8 / Second Floor +2 beds / Warehouse`
+- **SOULSMITH** 12 `Soul Stones & Golems` `8 stat / 4 skill` - `Stats (x8): Party HP/TP / Trust / Soul Cap / Carry` | `Skills (x4): Soul Imprint (carry extra traits & learned skills on golem inheritance) / Vessel Anchor (1 fatal-blow death ward per run) / Soul Resonance (party bond stat & practice boost) / Echo Breaker (+damage & stagger vs NG+ fallen-golem Echoes)`
+- **ARTIFICER** 12 `Relics, Tonics & Tower Craft` `8 stat / 4 skill` - `Stats (x8): Inv+ / Max TP / Elemental Res / Forge Cost Cut` | `Skills (x4): Relic Reroll (reroll floor Relic Altar or hold +1 run relic) / Runic Tonic (brew field HP/TP/cleanse tonics) / Sanctuary Camp (+1 free Camp trip home without raising respawn tier) / Catalyst Extract (+rare tower ore/crystal yield for Forge tiers)`
 
 ## 5. Magic - Simple Tales TP (Old deleted)
 Old `SpellCraftTypes.h:GetFusionType/GetSpellTier` `CalculateFinalManaCost Base*Shape*Env*Charge*Fatigue 5x` `Density 0.4-2.0s` deleted.
 New `TP 100 regen 8/s` `4 Artes LMB/RMB/Q/E` `Hold 0.3s arte` `Tap Demon Fang 12TP / Hold Spread 25TP` `if TP<cost stagger 0.4s` `ProceduralMagicCircle.cpp:RebuildGeneratedGeometry` keeps only color `GetElementColor()` rotation `0.45 rad/s`, no tiers. `Fighter` dip 5 nodes `Enchant Fire 15s 20TP` `NS_Sword_Fire` same as `Zelos/Kratos`.
 
 ## 6. Town Progression
-`Village wood` (start) -> `Large Town stone` `Barons Rank B` core end `Trust 50` -> `Kingdom Castle` `ARCHITECT DLC` `Trust 80` `Duke Rank A`. `Fantastic_Village_Pack` `StylizedIsland` foliage. No `PoE 1325` travel tax.
+`Village wood` (start) -> `Large Town stone` `Barons Rank B` core end `Trust 50` -> `Kingdom Castle` `DOMAIN+Architect` `Trust 80` `Duke Rank A`. `Fantastic_Village_Pack` `StylizedIsland` foliage. No `PoE 1325` travel tax.
 
 ## 7. Project Setup UE 5.8.1
 - Engine `T:\Program Files\UE_5.8` `EngineAssociation 5.8` `IsekaiVillage.uproject:FileVersion 3` `Modules IsekaiVillage Runtime`
@@ -57,7 +57,7 @@ New `TP 100 regen 8/s` `4 Artes LMB/RMB/Q/E` `Hold 0.3s arte` `Tap Demon Fang 12
 - Old code to delete vs keep: `Delete GrimoirePage.h/.cpp SpellCraftTypes fusions` `Keep CameraBoom FollowCamera Nier dodge/sprint/slide` `IslandTerrainActor cylinders` placeholder.
 
 ## 8. What Not To Do (Scope)
-No 13 fusions, no cattle breeding, no LLM NPC (BT 5 barks first), no PoE 1325, no harem. `RANGER/SUMMONS` `DUNGEON MASTER` as DLC saves 3 months.
+No 13 fusions, no cattle breeding, no LLM NPC (BT 5 barks first), no PoE 1325, no harem, no dungeon building/carving. `RANGER/SUMMONS/SOULSMITH/ARTIFICER` as DLC saves 3 months.
 
 ## 9. Next Steps
 1. `USphereGridDataAsset` + `CENTER A 14 Life` stub

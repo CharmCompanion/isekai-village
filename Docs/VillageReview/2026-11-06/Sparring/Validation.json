@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "date": "2026-11-06",
+  "build": "Succeeded",
+  "feature": "Turn-based adventurer sparring at a player-built Knight school",
+  "controls": {
+    "J": "Start, stop, or close sparring",
+    "1": "Strike",
+    "2": "Defend",
+    "3": "Guard Stance",
+    "4": "Arcane Bolt",
+    "5": "First Aid",
+    "6": "Evasive Step"
+  },
+  "automated_tests": [
+    {
+      "name": "IsekaiVillage.Combat.LearnedSkillSparring",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Combat.PartyTurnsAndVictory",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Construction.AuthoredPlots",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Golems.AdventurerPracticePersistence",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Golems.WantsAndLearning",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Magic.SlimeRunicRules",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.GolemShopLoop",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.HallDeliveries",
+      "state": "Success",
+      "errors": 0
+    },
+    {
+      "name": "IsekaiVillage.Village.WorkerProduction",
+      "state": "Success",
+      "errors": 0
+    }
+  ],
+  "live_checks": 30,
+  "fresh_session_checks": 8,
+  "input_verified": true,
+  "physical_assembly_verified": true,
+  "combat_learning_saved": {
+    "id": "6300AC3A497CDD2359AEFCB65BB469B4",
+    "guard": 121.19999694824219,
+    "magic": 303.3000183105469,
+    "scout": 133.29580688476562
+  },
+  "normal_save_slot_preserved": true,
+  "isolated_test_saves_removed": true,
+  "ui_rendered_and_visually_reviewed": true,
+  "screenshot": "C:\\Users\\RY0M\\Documents\\Codex\\2026-11-03\\referenced-chatgpt-conversation-this-is-an\\outputs\\Elrhun_Sparring_UI.png",
+  "map_sha256": "d9c7f2012f8c44cf844b6f42b5e96260b3b34efee2279dfbde6eeed7bcffe105",
+  "limitations": [
+    "This is nonlethal adventurer training; tower encounters, player combat participation, class statistics, bench swaps and permanent-death/soul-stone rules are not implemented by this slice.",
+    "Uses existing active reserve members and housing; the resource-based creation screen remains separate work.",
+    "Combat animation and effects are preliminary.",
+    "Gameplay input and saving were tested in the sky village with NullRHI and accelerated time/walking. The UI was rendered in an isolated small court; full-village rendering and packaged performance were not certified.",
+    "Prior learning was seeded as isolated test-fixture data. Only measured battle increments are described as combat-earned."
+  ]
+}

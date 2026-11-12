@@ -1,0 +1,417 @@
+{
+  "checked_existing_actors": 1250,
+  "unexpected_actor_changes": [],
+  "outside_foliage": [
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_SacredTower.SM_Civ30_SacredTower",
+      "before_outside": 683,
+      "after_outside": 683,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Bastion.SM_Civ30_Bastion",
+      "before_outside": 393,
+      "after_outside": 393,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Pumpkin_Var01.SM_Pumpkin_Var01",
+      "before_outside": 63,
+      "after_outside": 63,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_StreetLight.SM_StreetLight",
+      "before_outside": 1437,
+      "after_outside": 1437,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Fence_Var01.SM_Fence_Var01",
+      "before_outside": 2168,
+      "after_outside": 2168,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Barrel.SM_Barrel",
+      "before_outside": 3864,
+      "after_outside": 3864,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Crate_Closed.SM_Crate_Closed",
+      "before_outside": 3672,
+      "after_outside": 3672,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Hay_Stack.SM_Hay_Stack",
+      "before_outside": 932,
+      "after_outside": 932,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Sack_Flour.SM_Sack_Flour",
+      "before_outside": 968,
+      "after_outside": 968,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/food/SM_PROP_food_cauliflower.SM_PROP_food_cauliflower",
+      "before_outside": 195,
+      "after_outside": 195,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/furniture/SM_PROP_bench_01.SM_PROP_bench_01",
+      "before_outside": 72,
+      "after_outside": 72,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/furniture/SM_PROP_table_01.SM_PROP_table_01",
+      "before_outside": 90,
+      "after_outside": 90,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/light/SM_PROP_lantern_01.SM_PROP_lantern_01",
+      "before_outside": 18,
+      "after_outside": 18,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Boat.SM_Boat",
+      "before_outside": 42,
+      "after_outside": 42,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/buildings/SM_BLD_windmill_sail.SM_BLD_windmill_sail",
+      "before_outside": 11,
+      "after_outside": 11,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakTree2.SM_OakTree2",
+      "before_outside": 23738,
+      "after_outside": 23738,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Pine/SM_Pine01.SM_Pine01",
+      "before_outside": 31099,
+      "after_outside": 31099,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Coastal/SM_PalmTree01.SM_PalmTree01",
+      "before_outside": 428,
+      "after_outside": 428,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Desert/SM_DesertPalmTree01.SM_DesertPalmTree01",
+      "before_outside": 440,
+      "after_outside": 440,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/StylizedIsland/Mesh/Foliage/SM_Wheat.SM_Wheat",
+      "before_outside": 390,
+      "after_outside": 390,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Grass1.SM_Grass1",
+      "before_outside": 79243,
+      "after_outside": 79243,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakTree1.SM_OakTree1",
+      "before_outside": 539,
+      "after_outside": 539,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakTree3.SM_OakTree3",
+      "before_outside": 532,
+      "after_outside": 532,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakTree4.SM_OakTree4",
+      "before_outside": 23836,
+      "after_outside": 23836,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakBranch1.SM_OakBranch1",
+      "before_outside": 276,
+      "after_outside": 276,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_BushLeafy01.SM_BushLeafy01",
+      "before_outside": 1207,
+      "after_outside": 1207,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Fern2.SM_Fern2",
+      "before_outside": 1885,
+      "after_outside": 1885,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Gatehouse.SM_Civ30_Gatehouse",
+      "before_outside": 8,
+      "after_outside": 8,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Flower_Daisies1.SM_Flower_Daisies1",
+      "before_outside": 1740,
+      "after_outside": 1740,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Flower_Foxtails1.SM_Flower_Foxtails1",
+      "before_outside": 803,
+      "after_outside": 803,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Grass2.SM_Grass2",
+      "before_outside": 11095,
+      "after_outside": 11095,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakTreeLarge1.SM_OakTreeLarge1",
+      "before_outside": 356,
+      "after_outside": 356,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakFallen1.SM_OakFallen1",
+      "before_outside": 153,
+      "after_outside": 153,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Granary.SM_Civ30_Granary",
+      "before_outside": 71,
+      "after_outside": 71,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_StiltHouse.SM_Civ30_StiltHouse",
+      "before_outside": 548,
+      "after_outside": 548,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Boardwalk.SM_Civ30_Boardwalk",
+      "before_outside": 69,
+      "after_outside": 69,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Reeds.SM_Civ30_Reeds",
+      "before_outside": 2778,
+      "after_outside": 2778,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ33_MagicTower.SM_Civ33_MagicTower",
+      "before_outside": 3,
+      "after_outside": 3,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Banner.SM_Civ30_Banner",
+      "before_outside": 146,
+      "after_outside": 146,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ33_EmpireWall.SM_Civ33_EmpireWall",
+      "before_outside": 1775,
+      "after_outside": 1775,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ34_PleasureIsle.SM_Civ34_PleasureIsle",
+      "before_outside": 1,
+      "after_outside": 1,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var01.SM_House_Var01",
+      "before_outside": 2218,
+      "after_outside": 2218,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var02.SM_House_Var02",
+      "before_outside": 2231,
+      "after_outside": 2231,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var01_Extra01.SM_House_Var01_Extra01",
+      "before_outside": 2223,
+      "after_outside": 2223,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var02_Extra.SM_House_Var02_Extra",
+      "before_outside": 534,
+      "after_outside": 534,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var01_Extra02.SM_House_Var01_Extra02",
+      "before_outside": 2196,
+      "after_outside": 2196,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_House_Var01_Extra03.SM_House_Var01_Extra03",
+      "before_outside": 517,
+      "after_outside": 517,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/StylizedIsland/Mesh/Props/SM_Tent/SM_Stylized_Tent_Mesh/SM_Stylized_Tent.SM_Stylized_Tent",
+      "before_outside": 704,
+      "after_outside": 704,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/construction/SM_PROP_market_v01_01.SM_PROP_market_v01_01",
+      "before_outside": 603,
+      "after_outside": 603,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_CurtainWall.SM_Civ30_CurtainWall",
+      "before_outside": 12,
+      "after_outside": 12,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/construction/SM_PROP_market_v02_01.SM_PROP_market_v02_01",
+      "before_outside": 79,
+      "after_outside": 79,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/Fantastic_Village_Pack/meshes/props/construction/SM_PROP_market_v03_01.SM_PROP_market_v03_01",
+      "before_outside": 72,
+      "after_outside": 72,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Cart_Var01.SM_Cart_Var01",
+      "before_outside": 132,
+      "after_outside": 132,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/AdvancedVillagePack/Meshes/SM_Well.SM_Well",
+      "before_outside": 18,
+      "after_outside": 18,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Cathedral.SM_Civ30_Cathedral",
+      "before_outside": 21,
+      "after_outside": 21,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Refinement/SM_RockSpire_RockClump02_Smooth28.SM_RockSpire_RockClump02_Smooth28",
+      "before_outside": 934,
+      "after_outside": 934,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakSapling1.SM_OakSapling1",
+      "before_outside": 374,
+      "after_outside": 374,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Trees/Oak/SM_OakStump1.SM_OakStump1",
+      "before_outside": 137,
+      "after_outside": 137,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Refinement/SM_RockSpire_RockClumpB03_Smooth28.SM_RockSpire_RockClumpB03_Smooth28",
+      "before_outside": 313,
+      "after_outside": 313,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_ArcaneTower.SM_Civ30_ArcaneTower",
+      "before_outside": 106,
+      "after_outside": 106,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Bush1.SM_Bush1",
+      "before_outside": 1064,
+      "after_outside": 1064,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/SoStylized/Environment/Foliage/SM_Flower_Allium.SM_Flower_Allium",
+      "before_outside": 781,
+      "after_outside": 781,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Manufactory.SM_Civ30_Manufactory",
+      "before_outside": 185,
+      "after_outside": 185,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Sanctuary.SM_Civ30_Sanctuary",
+      "before_outside": 5,
+      "after_outside": 5,
+      "equal": true
+    },
+    {
+      "mesh": "/Game/IsekaiVillage/AdventureWorld/Meshes/Civilizations/SM_Civ30_Mill.SM_Civ30_Mill",
+      "before_outside": 11,
+      "after_outside": 11,
+      "equal": true
+    }
+  ],
+  "outside_foliage_equal": true,
+  "new_actor_count": 3,
+  "terrain_geometry_report": {
+    "name": "SM_IV_Continent_GosainTerraces37",
+    "original_vertices": 1075152,
+    "vertices": 1856600,
+    "triangles": 3712686,
+    "local_triangles": 1566038,
+    "unchanged_outside_vertices": 1073706,
+    "max_displacement_m": 14.500026549998438,
+    "local_edges": {
+      "open": 242,
+      "nonmanifold": 0
+    },
+    "terrace_levels_relative_to_old_city_m": [
+      1.5,
+      7.5,
+      14.5
+    ],
+    "elapsed_s": 113.88909554481506
+  }
+}

@@ -16,6 +16,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
 	int32 MaxReserve = 6;
+ UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Party") bool bUseGolemRoster=false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party")
 	int32 ActivePartyCap = 2;
@@ -25,6 +26,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Party")
 	bool HireAdventurer(FText Name);
+ UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Party|Learning") TMap<FName,TObjectPtr<UArteDataAsset>> LearnedArteDefinitions;
+ UFUNCTION(BlueprintCallable,Category="Party|Learning") bool RecordAdventurerPractice(FName AdventurerId,FName Domain,float Effort,bool bSucceeded);
+ UFUNCTION(BlueprintCallable,Category="Party|Learning") void RefreshLearnedArtes();
 
 	UFUNCTION(BlueprintPure, Category = "Party")
 	int32 GetActiveCompanionCount() const;

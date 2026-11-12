@@ -1,0 +1,20 @@
+{
+  "status": "saved_and_reviewed_capital_layout_checkpoint",
+  "not_final_empire": true,
+  "map": "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Content\\IsekaiVillage\\AdventureWorld\\Maps\\Map_AnimeAdventure.umap",
+  "map_sha256": "68495670d70b5f08417cb40ecef8eb550b4a33d4fe6b0d54fca0d7ac06dc8bac",
+  "saved_utc": "2026-10-14T05:31:15Z",
+  "existing_actors_checked": 1250,
+  "unexpected_actor_changes": 0,
+  "outside_foliage_equal": true,
+  "screenshots": [
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Capital.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Precinct.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Market.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Gate.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Terraces.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_Reverse.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain37\\After_ElRuhn_Protected.png"
+  ],
+  "next": "Gosain capital coastal defenses and road/bridge connections; preserve El Ruhn."
+}

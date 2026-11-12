@@ -1,0 +1,14 @@
+{
+  "status": "inspected_with_remaining_art_defects",
+  "native_collision": "13 isolated floor hits, 7 centerline segments clear, 3 entrance lanes clear, gate blocks",
+  "mine_actor_count": 195,
+  "remaining": [
+    "Broad smooth covering mound",
+    "Repeated rock forms",
+    "Sparse yard detail",
+    "Inherited blue near/far boundary"
+  ],
+  "next": "Gosain58 terrain priority supersedes port construction",
+  "geometry": "SM_Gosain57_MineLandformFinal",
+  "final_view": "Docs/WorldDesign/Gosain58_Before/Mine_Yard.png"
+}

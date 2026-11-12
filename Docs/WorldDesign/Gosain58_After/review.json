@@ -1,0 +1,28 @@
+{
+  "status": "inspected",
+  "native_scene_saved": true,
+  "target_quality_reached": false,
+  "views": [
+    "Right_Mountains",
+    "Right_Coast",
+    "Mine_Road",
+    "Lake_Shore",
+    "Kingdom",
+    "Mine_Yard"
+  ],
+  "checkpoint": "GOSAIN58_CHECKPOINT.md",
+  "remaining": [
+    "Abrupt blue near/far boundary affecting terrain and props",
+    "Isolated offshore triangular forms",
+    "Minor lake-bank creases",
+    "Overly broad smooth mountain surfaces",
+    "Repetitive towns and woodland, sparse undergrowth",
+    "World traversal and performance untested"
+  ],
+  "improvements": [
+    "Mine road shoulder streaks removed",
+    "Road paving gaps repaired",
+    "Main coast sawtooth forms smoothed",
+    "Gosain surface normals repaired"
+  ]
+}

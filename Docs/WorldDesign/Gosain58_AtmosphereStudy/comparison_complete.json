@@ -1,0 +1,21 @@
+{
+  "files": [
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain58_AtmosphereStudy\\Gosain_Current.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain58_AtmosphereStudy\\ElRuhn_Current.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain58_AtmosphereStudy\\Gosain_CorrectedSky.png",
+    "D:\\DEVELOPMENT\\Games\\IsekaiVillage\\Docs\\WorldDesign\\Gosain58_AtmosphereStudy\\ElRuhn_CorrectedSky.png"
+  ],
+  "original_sky_location_cm": [
+    0.0,
+    0.0,
+    -25000.0
+  ],
+  "restored_location_cm": [
+    0.0,
+    0.0,
+    -25000.0
+  ],
+  "restored": true,
+  "saved": false,
+  "error": null
+}
