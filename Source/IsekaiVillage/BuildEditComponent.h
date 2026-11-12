@@ -120,6 +120,45 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Build")
 	void RemoveSelected();
 
+	/** Shift-click toggles one piece or prop in the copy selection. */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	void ToggleSelectionActor(AActor* Actor);
+
+	/** Replace the selection with every piece and prop near the cursor. */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	int32 GrabUnderCursor(float Radius = 1800.0f);
+
+	/** Write the current selection to Saved/BuildTemplates and arm it for stamping. */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	FString SaveSelectionAsTemplate();
+
+	/** Save under an explicit file name. Empty string on failure. */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	FString SaveTemplateNamed(const FString& Name);
+
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	void ClearTemplateSelection();
+
+	/** Step through saved templates. The slot before the first is "none". */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	void CycleArmedTemplate(int32 Direction);
+
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	void ReloadBuildTemplates();
+
+	UFUNCTION(BlueprintPure, Category = "Build|Template")
+	bool IsTemplateArmed() const { return LoadedTemplates.IsValidIndex(ArmedTemplateIndex); }
+
+	UFUNCTION(BlueprintPure, Category = "Build|Template")
+	FString GetArmedTemplateName() const;
+
+	UFUNCTION(BlueprintPure, Category = "Build|Template")
+	int32 GetTemplateSelectionCount() const;
+
+	/** Spawn the named template. Yaw rotates the whole building around Origin. */
+	UFUNCTION(BlueprintCallable, Category = "Build|Template")
+	int32 StampTemplateNamed(const FString& Name, const FVector& Origin, float Yaw);
+
 	UPROPERTY(Transient)
 	TObjectPtr<class UBuildWheelWidget> BuildWheelWidget;
 
@@ -149,8 +188,21 @@ public:
 
 	FVector SnapFurnitureLocation(const FVector& WorldLoc, FRotator& InOutRotation) const;
 
+	UPROPERTY()
+	TArray<TObjectPtr<ABuildPiece>> TemplateSelectionPieces;
+
+	UPROPERTY()
+	TArray<TObjectPtr<ALinchpinProp>> TemplateSelectionProps;
+
+	UPROPERTY()
+	TArray<FBuildTemplate> LoadedTemplates;
+
+	int32 ArmedTemplateIndex = -1;
+
 private:
 	bool TraceCursor(FHitResult& OutHit) const;
 	FVector SnapLocation(const FVector& World) const;
 	APlayerController* GetPC() const;
+	FBuildTemplate CaptureSelection(const FString& Name) const;
+	void DrawTemplateSelection() const;
 };

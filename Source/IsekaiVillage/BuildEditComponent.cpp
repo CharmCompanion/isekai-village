@@ -12,6 +12,15 @@
 #include "Engine/World.h"
 #include "Engine/Engine.h"
 #include "EngineUtils.h"
+#include "DrawDebugHelpers.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonSerializer.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonWriter.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "HAL/FileManager.h"
+#include "InputCoreTypes.h"
 
 UBuildEditComponent::UBuildEditComponent()
 {
@@ -23,6 +32,54 @@ UBuildEditComponent::UBuildEditComponent()
 	CurrentPropTag = TEXT("Anvil");
 }
 
+namespace
+{
+	FString BuildTemplateDirectory()
+	{
+		return FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("BuildTemplates"));
+	}
+
+	TSharedRef<FJsonObject> VectorToJson(const FVector& Value)
+	{
+		TSharedRef<FJsonObject> Object = MakeShared<FJsonObject>();
+		Object->SetNumberField(TEXT("x"), Value.X);
+		Object->SetNumberField(TEXT("y"), Value.Y);
+		Object->SetNumberField(TEXT("z"), Value.Z);
+		return Object;
+	}
+
+	FVector JsonToVector(const TSharedPtr<FJsonObject>& Object, const FVector& Fallback)
+	{
+		if (!Object.IsValid())
+		{
+			return Fallback;
+		}
+		return FVector(Object->GetNumberField(TEXT("x")), Object->GetNumberField(TEXT("y")), Object->GetNumberField(TEXT("z")));
+	}
+
+	void RefreshRoomsAt(UWorld* World, const FVector& Location)
+	{
+		if (!World)
+		{
+			return;
+		}
+		for (TActorIterator<ARoomVolume> It(World); It; ++It)
+		{
+			if (!It->Bounds)
+			{
+				continue;
+			}
+			const FBox Box(
+				It->GetActorLocation() - It->Bounds->GetScaledBoxExtent(),
+				It->GetActorLocation() + It->Bounds->GetScaledBoxExtent());
+			if (Box.IsInside(Location))
+			{
+				It->RefreshFunction();
+			}
+		}
+	}
+}
+
 void UBuildEditComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -30,6 +87,7 @@ void UBuildEditComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	{
 		return;
 	}
+	DrawTemplateSelection();
 
 	if (bPlacingProps)
 	{
@@ -85,7 +143,11 @@ bool UBuildEditComponent::TraceCursor(FHitResult& OutHit) const
 		PC->GetPlayerViewPoint(Start, ViewRot);
 		Dir = ViewRot.Vector();
 	}
-	return World->LineTraceSingleByChannel(OutHit, Start, Start + Dir * 8000.0f, ECC_Visibility);
+	const AIsekaiVillageCharacter* Character = Cast<AIsekaiVillageCharacter>(GetOwner());
+	const float Reach = (Character && Character->bFreeBuildCam) ? 120000.0f : 8000.0f;
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(BuildTrace), true);
+	Params.AddIgnoredActor(GetOwner());
+	return World->LineTraceSingleByChannel(OutHit, Start + Dir * 40.0f, Start + Dir * Reach, ECC_Visibility, Params);
 }
 
 FVector UBuildEditComponent::SnapLocation(const FVector& World) const
@@ -467,6 +529,17 @@ void UBuildEditComponent::PlaceOrSelect()
 	}
 
 	AIsekaiVillageCharacter* Character = Cast<AIsekaiVillageCharacter>(GetOwner());
+	if (APlayerController* PC = GetPC(); PC && PC->IsInputKeyDown(EKeys::LeftShift))
+	{
+		ToggleSelectionActor(Hit.GetActor());
+		return;
+	}
+	if (IsTemplateArmed())
+	{
+		const FVector Origin = bFreeformPlacement ? Hit.Location : SnapLocation(Hit.Location);
+		StampTemplateNamed(LoadedTemplates[ArmedTemplateIndex].Name, Origin, PlacementYaw);
+		return;
+	}
 
 	if (bPlacingProps)
 	{
@@ -651,6 +724,501 @@ void UBuildEditComponent::RemoveSelected()
 		if (ABuildPiece* Piece = Cast<ABuildPiece>(Hit.GetActor()))
 		{
 			Piece->Destroy();
+		}
+	}
+}
+
+void UBuildEditComponent::ToggleSelectionActor(AActor* Actor)
+{
+	if (ABuildPiece* Piece = Cast<ABuildPiece>(Actor))
+	{
+		if (Piece->bPreview)
+		{
+			return;
+		}
+		const int32 Index = TemplateSelectionPieces.IndexOfByKey(Piece);
+		if (Index != INDEX_NONE)
+		{
+			TemplateSelectionPieces.RemoveAt(Index);
+		}
+		else
+		{
+			TemplateSelectionPieces.Add(Piece);
+		}
+		SelectedPiece = Piece;
+		return;
+	}
+	if (ALinchpinProp* Prop = Cast<ALinchpinProp>(Actor))
+	{
+		const int32 Index = TemplateSelectionProps.IndexOfByKey(Prop);
+		if (Index != INDEX_NONE)
+		{
+			TemplateSelectionProps.RemoveAt(Index);
+		}
+		else
+		{
+			TemplateSelectionProps.Add(Prop);
+		}
+		SelectedProp = Prop;
+	}
+}
+
+int32 UBuildEditComponent::GrabUnderCursor(float Radius)
+{
+	FHitResult Hit;
+	FVector Origin = FVector::ZeroVector;
+	if (TraceCursor(Hit))
+	{
+		Origin = Hit.Location;
+	}
+	else if (const AActor* Owner = GetOwner())
+	{
+		Origin = Owner->GetActorLocation() + Owner->GetActorForwardVector() * 1500.0f;
+	}
+	else
+	{
+		return 0;
+	}
+
+	TemplateSelectionPieces.Reset();
+	TemplateSelectionProps.Reset();
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return 0;
+	}
+	const float RadiusSq = FMath::Square(Radius);
+	for (TActorIterator<ABuildPiece> It(World); It; ++It)
+	{
+		if (!It->bPreview && FVector::DistSquared(It->GetActorLocation(), Origin) <= RadiusSq)
+		{
+			TemplateSelectionPieces.Add(*It);
+		}
+	}
+	for (TActorIterator<ALinchpinProp> It(World); It; ++It)
+	{
+		if (FVector::DistSquared(It->GetActorLocation(), Origin) <= RadiusSq)
+		{
+			TemplateSelectionProps.Add(*It);
+		}
+	}
+	const int32 Count = GetTemplateSelectionCount();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Grabbed %d pieces for a template."), Count));
+	}
+	return Count;
+}
+
+FBuildTemplate UBuildEditComponent::CaptureSelection(const FString& Name) const
+{
+	FBuildTemplate Template;
+	Template.Name = Name;
+	FVector Sum = FVector::ZeroVector;
+	int32 Count = 0;
+	for (const ABuildPiece* Piece : TemplateSelectionPieces)
+	{
+		if (IsValid(Piece))
+		{
+			Sum += Piece->GetActorLocation();
+			++Count;
+		}
+	}
+	for (const ALinchpinProp* Prop : TemplateSelectionProps)
+	{
+		if (IsValid(Prop))
+		{
+			Sum += Prop->GetActorLocation();
+			++Count;
+		}
+	}
+	if (Count == 0)
+	{
+		return Template;
+	}
+	const FVector Anchor = Sum / static_cast<float>(Count);
+	for (const ABuildPiece* Piece : TemplateSelectionPieces)
+	{
+		if (!IsValid(Piece))
+		{
+			continue;
+		}
+		FBuildTemplatePiece Record;
+		Record.PieceType = Piece->PieceType;
+		Record.Occupancy = Piece->Occupancy;
+		Record.WallStyle = Piece->WallStyle;
+		Record.Materials = Piece->MaterialConfig;
+		Record.RelativeLocation = Piece->GetActorLocation() - Anchor;
+		Record.RelativeYaw = Piece->GetActorRotation().Yaw;
+		Record.ScaleMultiplier = Piece->ScaleMultiplier;
+		Record.SectionMask = Piece->SectionMask;
+		Record.Corners = Piece->Corners;
+		Record.CellSize = Piece->CellSize;
+		Record.WallHeight = Piece->WallHeight;
+		Record.Thickness = Piece->Thickness;
+		Template.Pieces.Add(Record);
+	}
+	for (const ALinchpinProp* Prop : TemplateSelectionProps)
+	{
+		if (!IsValid(Prop))
+		{
+			continue;
+		}
+		FBuildTemplateProp Record;
+		Record.PropTag = Prop->LinchpinTag;
+		Record.RelativeLocation = Prop->GetActorLocation() - Anchor;
+		Record.RelativeYaw = Prop->GetActorRotation().Yaw;
+		Template.Props.Add(Record);
+	}
+	return Template;
+}
+
+FString UBuildEditComponent::SaveTemplateNamed(const FString& Name)
+{
+	if (Name.IsEmpty() || Name.Contains(TEXT("/")) || Name.Contains(TEXT("\\")) || Name.Contains(TEXT("..")))
+	{
+		return FString();
+	}
+	const FBuildTemplate Template = CaptureSelection(Name);
+	if (Template.Pieces.Num() == 0 && Template.Props.Num() == 0)
+	{
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange, TEXT("Select pieces with Shift+Click or F3 before saving a template."));
+		}
+		return FString();
+	}
+
+	TSharedRef<FJsonObject> Root = MakeShared<FJsonObject>();
+	Root->SetStringField(TEXT("name"), Template.Name);
+	TArray<TSharedPtr<FJsonValue>> PieceValues;
+	for (const FBuildTemplatePiece& Piece : Template.Pieces)
+	{
+		TSharedRef<FJsonObject> Object = MakeShared<FJsonObject>();
+		Object->SetNumberField(TEXT("type"), static_cast<int32>(Piece.PieceType));
+		Object->SetNumberField(TEXT("occupancy"), static_cast<int32>(Piece.Occupancy));
+		Object->SetNumberField(TEXT("wallStyle"), static_cast<int32>(Piece.WallStyle));
+		Object->SetNumberField(TEXT("exterior"), static_cast<int32>(Piece.Materials.ExteriorMaterial));
+		Object->SetNumberField(TEXT("interior"), static_cast<int32>(Piece.Materials.InteriorMaterial));
+		Object->SetNumberField(TEXT("trim"), static_cast<int32>(Piece.Materials.TrimMaterial));
+		Object->SetObjectField(TEXT("location"), VectorToJson(Piece.RelativeLocation));
+		Object->SetNumberField(TEXT("yaw"), Piece.RelativeYaw);
+		Object->SetObjectField(TEXT("scale"), VectorToJson(Piece.ScaleMultiplier));
+		Object->SetNumberField(TEXT("sectionMask"), Piece.SectionMask);
+		Object->SetNumberField(TEXT("cell"), Piece.CellSize);
+		Object->SetNumberField(TEXT("height"), Piece.WallHeight);
+		Object->SetNumberField(TEXT("thickness"), Piece.Thickness);
+		TArray<TSharedPtr<FJsonValue>> CornerValues;
+		for (const FBuildCorner& Corner : Piece.Corners)
+		{
+			TSharedRef<FJsonObject> CornerObject = MakeShared<FJsonObject>();
+			CornerObject->SetNumberField(TEXT("style"), static_cast<int32>(Corner.Style));
+			CornerObject->SetNumberField(TEXT("x"), Corner.Offset.X);
+			CornerObject->SetNumberField(TEXT("y"), Corner.Offset.Y);
+			CornerValues.Add(MakeShared<FJsonValueObject>(CornerObject));
+		}
+		Object->SetArrayField(TEXT("corners"), CornerValues);
+		PieceValues.Add(MakeShared<FJsonValueObject>(Object));
+	}
+	Root->SetArrayField(TEXT("pieces"), PieceValues);
+	TArray<TSharedPtr<FJsonValue>> PropValues;
+	for (const FBuildTemplateProp& Prop : Template.Props)
+	{
+		TSharedRef<FJsonObject> Object = MakeShared<FJsonObject>();
+		Object->SetStringField(TEXT("tag"), Prop.PropTag.ToString());
+		Object->SetObjectField(TEXT("location"), VectorToJson(Prop.RelativeLocation));
+		Object->SetNumberField(TEXT("yaw"), Prop.RelativeYaw);
+		PropValues.Add(MakeShared<FJsonValueObject>(Object));
+	}
+	Root->SetArrayField(TEXT("props"), PropValues);
+
+	FString Json;
+	const TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&Json);
+	if (!FJsonSerializer::Serialize(Root, Writer))
+	{
+		return FString();
+	}
+	const FString Directory = BuildTemplateDirectory();
+	IFileManager::Get().MakeDirectory(*Directory, true);
+	const FString Path = FPaths::Combine(Directory, Name + TEXT(".json"));
+	if (!FFileHelper::SaveStringToFile(Json, *Path))
+	{
+		return FString();
+	}
+
+	ReloadBuildTemplates();
+	ArmedTemplateIndex = LoadedTemplates.IndexOfByPredicate([&Name](const FBuildTemplate& Item) { return Item.Name == Name; });
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Green, FString::Printf(TEXT("Saved template %s  (%d parts)  Saved/BuildTemplates/%s.json"), *Name, Template.Pieces.Num() + Template.Props.Num(), *Name));
+	}
+	return Name;
+}
+
+FString UBuildEditComponent::SaveSelectionAsTemplate()
+{
+	const FString Directory = BuildTemplateDirectory();
+	int32 Index = 1;
+	FString Name;
+	do
+	{
+		Name = FString::Printf(TEXT("Template_%02d"), Index);
+		++Index;
+	}
+	while (FPaths::FileExists(FPaths::Combine(Directory, Name + TEXT(".json"))));
+	return SaveTemplateNamed(Name);
+}
+
+void UBuildEditComponent::ClearTemplateSelection()
+{
+	TemplateSelectionPieces.Reset();
+	TemplateSelectionProps.Reset();
+	ArmedTemplateIndex = -1;
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Silver, TEXT("Template selection cleared."));
+	}
+}
+
+void UBuildEditComponent::ReloadBuildTemplates()
+{
+	const FString ArmedName = GetArmedTemplateName();
+	LoadedTemplates.Reset();
+	TArray<FString> Files;
+	IFileManager::Get().FindFiles(Files, *FPaths::Combine(BuildTemplateDirectory(), TEXT("*.json")), true, false);
+	Files.Sort();
+	for (const FString& File : Files)
+	{
+		FString Json;
+		if (!FFileHelper::LoadFileToString(Json, *FPaths::Combine(BuildTemplateDirectory(), File)))
+		{
+			continue;
+		}
+		TSharedPtr<FJsonObject> Root;
+		const TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Json);
+		if (!FJsonSerializer::Deserialize(Reader, Root) || !Root.IsValid())
+		{
+			continue;
+		}
+		FBuildTemplate Template;
+		Template.Name = Root->GetStringField(TEXT("name"));
+		if (Template.Name.IsEmpty())
+		{
+			Template.Name = FPaths::GetBaseFilename(File);
+		}
+		const TArray<TSharedPtr<FJsonValue>>* PieceValues = nullptr;
+		if (Root->TryGetArrayField(TEXT("pieces"), PieceValues))
+		{
+			for (const TSharedPtr<FJsonValue>& Value : *PieceValues)
+			{
+				const TSharedPtr<FJsonObject> Object = Value.IsValid() ? Value->AsObject() : nullptr;
+				if (!Object.IsValid())
+				{
+					continue;
+				}
+				FBuildTemplatePiece Piece;
+				Piece.PieceType = static_cast<EBuildPieceType>(static_cast<uint8>(Object->GetIntegerField(TEXT("type"))));
+				Piece.Occupancy = static_cast<EBuildOccupancy>(static_cast<uint8>(Object->GetIntegerField(TEXT("occupancy"))));
+				Piece.WallStyle = static_cast<EBuildWallStyle>(static_cast<uint8>(Object->GetIntegerField(TEXT("wallStyle"))));
+				Piece.Materials.ExteriorMaterial = static_cast<EBuildMaterialStyle>(static_cast<uint8>(Object->GetIntegerField(TEXT("exterior"))));
+				Piece.Materials.InteriorMaterial = static_cast<EBuildMaterialStyle>(static_cast<uint8>(Object->GetIntegerField(TEXT("interior"))));
+				Piece.Materials.TrimMaterial = static_cast<EBuildMaterialStyle>(static_cast<uint8>(Object->GetIntegerField(TEXT("trim"))));
+				const TSharedPtr<FJsonObject>* Location = nullptr;
+				if (Object->TryGetObjectField(TEXT("location"), Location))
+				{
+					Piece.RelativeLocation = JsonToVector(*Location, FVector::ZeroVector);
+				}
+				Piece.RelativeYaw = Object->GetNumberField(TEXT("yaw"));
+				const TSharedPtr<FJsonObject>* Scale = nullptr;
+				if (Object->TryGetObjectField(TEXT("scale"), Scale))
+				{
+					Piece.ScaleMultiplier = JsonToVector(*Scale, FVector::OneVector);
+				}
+				Piece.SectionMask = static_cast<uint8>(Object->GetIntegerField(TEXT("sectionMask")));
+				double Cell = 200.0;
+				double Height = 280.0;
+				double Thickness = 18.0;
+				Object->TryGetNumberField(TEXT("cell"), Cell);
+				Object->TryGetNumberField(TEXT("height"), Height);
+				Object->TryGetNumberField(TEXT("thickness"), Thickness);
+				Piece.CellSize = static_cast<float>(Cell);
+				Piece.WallHeight = static_cast<float>(Height);
+				Piece.Thickness = static_cast<float>(Thickness);
+				const TArray<TSharedPtr<FJsonValue>>* CornerValues = nullptr;
+				if (Object->TryGetArrayField(TEXT("corners"), CornerValues))
+				{
+					for (const TSharedPtr<FJsonValue>& CornerValue : *CornerValues)
+					{
+						const TSharedPtr<FJsonObject> CornerObject = CornerValue.IsValid() ? CornerValue->AsObject() : nullptr;
+						if (!CornerObject.IsValid())
+						{
+							continue;
+						}
+						FBuildCorner Corner;
+						Corner.Style = static_cast<EBuildCornerStyle>(static_cast<uint8>(CornerObject->GetIntegerField(TEXT("style"))));
+						Corner.Offset = FVector2D(CornerObject->GetNumberField(TEXT("x")), CornerObject->GetNumberField(TEXT("y")));
+						Piece.Corners.Add(Corner);
+					}
+				}
+				Template.Pieces.Add(Piece);
+			}
+		}
+		const TArray<TSharedPtr<FJsonValue>>* PropValues = nullptr;
+		if (Root->TryGetArrayField(TEXT("props"), PropValues))
+		{
+			for (const TSharedPtr<FJsonValue>& Value : *PropValues)
+			{
+				const TSharedPtr<FJsonObject> Object = Value.IsValid() ? Value->AsObject() : nullptr;
+				if (!Object.IsValid())
+				{
+					continue;
+				}
+				FBuildTemplateProp Prop;
+				Prop.PropTag = FName(*Object->GetStringField(TEXT("tag")));
+				const TSharedPtr<FJsonObject>* Location = nullptr;
+				if (Object->TryGetObjectField(TEXT("location"), Location))
+				{
+					Prop.RelativeLocation = JsonToVector(*Location, FVector::ZeroVector);
+				}
+				Prop.RelativeYaw = Object->GetNumberField(TEXT("yaw"));
+				Template.Props.Add(Prop);
+			}
+		}
+		if (Template.Pieces.Num() > 0 || Template.Props.Num() > 0)
+		{
+			LoadedTemplates.Add(Template);
+		}
+	}
+	ArmedTemplateIndex = LoadedTemplates.IndexOfByPredicate([&ArmedName](const FBuildTemplate& Item) { return Item.Name == ArmedName; });
+}
+
+void UBuildEditComponent::CycleArmedTemplate(int32 Direction)
+{
+	const FString Current = GetArmedTemplateName();
+	ReloadBuildTemplates();
+	if (LoadedTemplates.Num() == 0)
+	{
+		ArmedTemplateIndex = -1;
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange, TEXT("No saved templates in Saved/BuildTemplates."));
+		}
+		return;
+	}
+	int32 Slot = LoadedTemplates.IndexOfByPredicate([&Current](const FBuildTemplate& Item) { return Item.Name == Current; });
+	const int32 Span = LoadedTemplates.Num() + 1;
+	int32 Cursor = Slot + 1;
+	Cursor = (Cursor + (Direction >= 0 ? 1 : -1) + Span * 2) % Span;
+	ArmedTemplateIndex = Cursor - 1;
+	if (GEngine)
+	{
+		const FString Label = IsTemplateArmed() ? GetArmedTemplateName() : FString(TEXT("none"));
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, FString::Printf(TEXT("Stamp template: %s"), *Label));
+	}
+}
+
+FString UBuildEditComponent::GetArmedTemplateName() const
+{
+	return IsTemplateArmed() ? LoadedTemplates[ArmedTemplateIndex].Name : FString();
+}
+
+int32 UBuildEditComponent::GetTemplateSelectionCount() const
+{
+	int32 Count = 0;
+	for (const ABuildPiece* Piece : TemplateSelectionPieces)
+	{
+		if (IsValid(Piece))
+		{
+			++Count;
+		}
+	}
+	for (const ALinchpinProp* Prop : TemplateSelectionProps)
+	{
+		if (IsValid(Prop))
+		{
+			++Count;
+		}
+	}
+	return Count;
+}
+
+int32 UBuildEditComponent::StampTemplateNamed(const FString& Name, const FVector& Origin, float Yaw)
+{
+	if (!LoadedTemplates.ContainsByPredicate([&Name](const FBuildTemplate& Item) { return Item.Name == Name; }))
+	{
+		ReloadBuildTemplates();
+	}
+	const FBuildTemplate* Template = LoadedTemplates.FindByPredicate([&Name](const FBuildTemplate& Item) { return Item.Name == Name; });
+	UWorld* World = GetWorld();
+	if (!Template || !World)
+	{
+		return 0;
+	}
+	int32 Spawned = 0;
+	for (const FBuildTemplatePiece& Record : Template->Pieces)
+	{
+		const FVector Location = Origin + Record.RelativeLocation.RotateAngleAxis(Yaw, FVector::UpVector);
+		const FRotator Rotation(0.0f, Record.RelativeYaw + Yaw, 0.0f);
+		ABuildPiece* Piece = World->SpawnActor<ABuildPiece>(Location, Rotation);
+		if (!Piece)
+		{
+			continue;
+		}
+		Piece->PieceType = Record.PieceType;
+		Piece->Occupancy = Record.Occupancy;
+		Piece->WallStyle = Record.WallStyle;
+		Piece->MaterialConfig = Record.Materials;
+		Piece->ScaleMultiplier = Record.ScaleMultiplier;
+		Piece->SectionMask = Record.SectionMask;
+		Piece->CellSize = Record.CellSize;
+		Piece->WallHeight = Record.WallHeight;
+		Piece->Thickness = Record.Thickness;
+		if (Record.Corners.Num() == 4)
+		{
+			Piece->Corners = Record.Corners;
+		}
+		Piece->RebuildMesh();
+		++Spawned;
+	}
+	for (const FBuildTemplateProp& Record : Template->Props)
+	{
+		const FVector Location = Origin + Record.RelativeLocation.RotateAngleAxis(Yaw, FVector::UpVector);
+		const FRotator Rotation(0.0f, Record.RelativeYaw + Yaw, 0.0f);
+		ALinchpinProp* Prop = World->SpawnActor<ALinchpinProp>(Location, Rotation);
+		if (!Prop)
+		{
+			continue;
+		}
+		Prop->SetupProp(Record.PropTag);
+		RefreshRoomsAt(World, Location);
+		++Spawned;
+	}
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Stamped %s (%d parts)."), *Name, Spawned));
+	}
+	return Spawned;
+}
+
+void UBuildEditComponent::DrawTemplateSelection() const
+{
+	UWorld* World = GetWorld();
+	if (!World || !World->IsGameWorld())
+	{
+		return;
+	}
+	for (const ABuildPiece* Piece : TemplateSelectionPieces)
+	{
+		if (IsValid(Piece))
+		{
+			DrawDebugBox(World, Piece->GetActorLocation(), FVector(90.0f, 90.0f, 150.0f), FColor::Green, false, 0.0f, 0, 2.0f);
+		}
+	}
+	for (const ALinchpinProp* Prop : TemplateSelectionProps)
+	{
+		if (IsValid(Prop))
+		{
+			DrawDebugBox(World, Prop->GetActorLocation(), FVector(55.0f, 55.0f, 55.0f), FColor::Cyan, false, 0.0f, 0, 2.0f);
 		}
 	}
 }

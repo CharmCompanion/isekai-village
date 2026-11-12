@@ -620,7 +620,7 @@ void AIsekaiVillageHUD::DrawBuildModeOverlay(AIsekaiVillageCharacter* Character)
 
 	UBuildEditComponent* BE = Character->BuildEdit;
 	const float PanelW = 430.0f;
-	const float PanelH = 260.0f;
+	const float PanelH = 330.0f;
 	const float X = FMath::Max(20.0f, Canvas->SizeX - PanelW - 25.0f);
 	const float Y = 30.0f;
 
@@ -681,4 +681,14 @@ void AIsekaiVillageHUD::DrawBuildModeOverlay(AIsekaiVillageCharacter* Character)
 	DrawText(TEXT("[C] Cycle Wallpaper| [R] Rotate 90° | [F] Freeform"), FLinearColor(0.85f, 0.88f, 0.92f), X + 15.0f, CurrentY, nullptr, 0.75f);
 	CurrentY += 18.0f;
 	DrawText(TEXT("[LMB] Place/Craft  | [RMB] Remove   | [B] Exit Build"), FLinearColor(0.45f, 0.95f, 0.65f), X + 15.0f, CurrentY, nullptr, 0.78f);
+	CurrentY += 18.0f;
+	const FString CamLine = Character->bFreeBuildCam
+		? TEXT("[F2] Free Cam ON   | Space/Ctrl up-down | Shift fast")
+		: TEXT("[F2] Free Cam      | fly past the island edge");
+	DrawText(CamLine, FLinearColor(0.55f, 0.9f, 1.0f), X + 15.0f, CurrentY, nullptr, 0.75f);
+	CurrentY += 18.0f;
+	const FString TemplateName = BE->IsTemplateArmed() ? BE->GetArmedTemplateName() : FString(TEXT("none"));
+	DrawText(FString::Printf(TEXT("[Shift+LMB] Select %d  [F3] Grab  [F4] Save"), BE->GetTemplateSelectionCount()), FLinearColor(0.75f, 0.95f, 0.7f), X + 15.0f, CurrentY, nullptr, 0.72f);
+	CurrentY += 18.0f;
+	DrawText(FString::Printf(TEXT("[F6] Stamp: %s   [F7] Clear selection"), *TemplateName), FLinearColor(0.75f, 0.95f, 0.7f), X + 15.0f, CurrentY, nullptr, 0.72f);
 }

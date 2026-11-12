@@ -33,7 +33,9 @@
 #include "NiagaraSystem.h"
 #include "NiagaraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/WorldSettings.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/MeshComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
@@ -255,6 +257,43 @@ void AIsekaiVillageCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bFreeBuildCam)
+	{
+		if (APlayerController* PC = Cast<APlayerController>(Controller))
+		{
+			float Up = 0.0f;
+			if (PC->IsInputKeyDown(EKeys::SpaceBar))
+			{
+				Up += 1.0f;
+			}
+			if (PC->IsInputKeyDown(EKeys::LeftControl))
+			{
+				Up -= 1.0f;
+			}
+			if (UCharacterMovementComponent* Move = GetCharacterMovement())
+			{
+				Move->MaxFlySpeed = PC->IsInputKeyDown(EKeys::LeftShift) ? 7200.0f : 2800.0f;
+			}
+			if (!FMath::IsNearlyZero(Up))
+			{
+				AddMovementInput(FVector::UpVector, Up);
+			}
+		}
+		if (const UWorld* World = GetWorld())
+		{
+			if (const AWorldSettings* Settings = World->GetWorldSettings())
+			{
+				const float SafeZ = Settings->KillZ + 3000.0f;
+				if (GetActorLocation().Z < SafeZ)
+				{
+					FVector Location = GetActorLocation();
+					Location.Z = SafeZ;
+					SetActorLocation(Location);
+				}
+			}
+		}
+	}
+
 	// TP Regen (Tales style — 8/s base + Magic/TPConserve scaling)
 	if (CurrentTP < MaxTP)
 	{
@@ -346,6 +385,11 @@ void AIsekaiVillageCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	PlayerInputComponent->BindKey(EKeys::V, IE_Pressed, this, &AIsekaiVillageCharacter::OnBuildToggleFreeform);
 	PlayerInputComponent->BindKey(EKeys::RightBracket, IE_Pressed, this, &AIsekaiVillageCharacter::OnBuildScaleUp);
 	PlayerInputComponent->BindKey(EKeys::LeftBracket, IE_Pressed, this, &AIsekaiVillageCharacter::OnBuildScaleDown);
+	PlayerInputComponent->BindKey(EKeys::F2, IE_Pressed, this, &AIsekaiVillageCharacter::OnToggleFreeBuildCam);
+	PlayerInputComponent->BindKey(EKeys::F3, IE_Pressed, this, &AIsekaiVillageCharacter::OnGrabBuildingTemplate);
+	PlayerInputComponent->BindKey(EKeys::F4, IE_Pressed, this, &AIsekaiVillageCharacter::OnSaveBuildingTemplate);
+	PlayerInputComponent->BindKey(EKeys::F6, IE_Pressed, this, &AIsekaiVillageCharacter::OnCycleBuildingTemplate);
+	PlayerInputComponent->BindKey(EKeys::F7, IE_Pressed, this, &AIsekaiVillageCharacter::OnClearBuildingTemplate);
 
 	// Mouse look fallbacks
 	PlayerInputComponent->BindAxisKey(EKeys::MouseX, this, &APawn::AddControllerYawInput);
@@ -390,10 +434,9 @@ void AIsekaiVillageCharacter::EnhancedMove(const FInputActionValue& Value)
 	if (Controller != nullptr)
 	{
 		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0.0f, Rotation.Yaw, 0.0f);
-
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		const FRotator AimRotation = bFreeBuildCam ? Rotation : FRotator(0.0f, Rotation.Yaw, 0.0f);
+		const FVector ForwardDirection = FRotationMatrix(AimRotation).GetUnitAxis(EAxis::X);
+		const FVector RightDirection = FRotationMatrix(AimRotation).GetUnitAxis(EAxis::Y);
 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
@@ -473,6 +516,160 @@ void AIsekaiVillageCharacter::OnBuildToggle()
 		return;
 	}
 	BuildEdit->ToggleBuildMode();
+	if (BuildEdit->bBuildMode)
+	{
+		BuildEdit->ReloadBuildTemplates();
+	}
+	else
+	{
+		SetFreeBuildCam(false);
+	}
+}
+
+void AIsekaiVillageCharacter::Jump()
+{
+	if (bFreeBuildCam)
+	{
+		return;
+	}
+	Super::Jump();
+}
+
+void AIsekaiVillageCharacter::SetFreeBuildCam(bool bEnable)
+{
+	if (bFreeBuildCam == bEnable)
+	{
+		return;
+	}
+	UCharacterMovementComponent* Move = GetCharacterMovement();
+	UCapsuleComponent* Capsule = GetCapsuleComponent();
+	if (!Move || !Capsule)
+	{
+		return;
+	}
+
+	bFreeBuildCam = bEnable;
+	if (bEnable)
+	{
+		FreeCamReturnLocation = GetActorLocation();
+		SavedGravityScale = Move->GravityScale;
+		SavedJumpZVelocity = Move->JumpZVelocity;
+		SavedMaxAcceleration = Move->MaxAcceleration;
+		bSavedOrientToMovement = Move->bOrientRotationToMovement;
+		if (CameraBoom)
+		{
+			SavedArmLength = CameraBoom->TargetArmLength;
+			SavedSocketOffset = CameraBoom->SocketOffset;
+			bSavedCameraCollision = CameraBoom->bDoCollisionTest;
+			CameraBoom->TargetArmLength = 0.0f;
+			CameraBoom->SocketOffset = FVector::ZeroVector;
+			CameraBoom->bDoCollisionTest = false;
+		}
+		Move->StopMovementImmediately();
+		Move->SetMovementMode(MOVE_Flying);
+		Move->GravityScale = 0.0f;
+		Move->JumpZVelocity = 0.0f;
+		Move->MaxFlySpeed = 2800.0f;
+		Move->MaxAcceleration = 24000.0f;
+		Move->BrakingDecelerationFlying = 20000.0f;
+		Move->bOrientRotationToMovement = false;
+		Capsule->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		TInlineComponentArray<UMeshComponent*> Meshes;
+		GetComponents(Meshes);
+		for (UMeshComponent* MeshComp : Meshes)
+		{
+			if (MeshComp)
+			{
+				MeshComp->SetOwnerNoSee(true);
+			}
+		}
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Cyan, TEXT("Free build cam ON — fly through the island. Space up, Ctrl down, Shift fast. F2 exits."));
+		}
+		return;
+	}
+
+	FVector Landing = FreeCamReturnLocation;
+	if (UWorld* World = GetWorld())
+	{
+		FHitResult Ground;
+		FCollisionQueryParams Params(SCENE_QUERY_STAT(FreeCamLand), false);
+		Params.AddIgnoredActor(this);
+		const FVector Start = GetActorLocation();
+		if (World->LineTraceSingleByChannel(Ground, Start, Start - FVector(0.0f, 0.0f, 80000.0f), ECC_Visibility, Params))
+		{
+			Landing = Ground.Location + FVector(0.0f, 0.0f, Capsule->GetScaledCapsuleHalfHeight() + 4.0f);
+		}
+	}
+	SetActorLocation(Landing);
+	Move->StopMovementImmediately();
+	Move->GravityScale = SavedGravityScale;
+	Move->JumpZVelocity = SavedJumpZVelocity;
+	Move->MaxAcceleration = SavedMaxAcceleration;
+	Move->bOrientRotationToMovement = bSavedOrientToMovement;
+	Move->SetMovementMode(MOVE_Walking);
+	Capsule->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	if (CameraBoom)
+	{
+		CameraBoom->TargetArmLength = SavedArmLength;
+		CameraBoom->SocketOffset = SavedSocketOffset;
+		CameraBoom->bDoCollisionTest = bSavedCameraCollision;
+	}
+	TInlineComponentArray<UMeshComponent*> Meshes;
+	GetComponents(Meshes);
+	for (UMeshComponent* MeshComp : Meshes)
+	{
+		if (MeshComp)
+		{
+			MeshComp->SetOwnerNoSee(false);
+		}
+	}
+	UpdateMovementSpeed();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, TEXT("Free build cam OFF"));
+	}
+}
+
+void AIsekaiVillageCharacter::OnToggleFreeBuildCam()
+{
+	if (IsBuildMode())
+	{
+		SetFreeBuildCam(!bFreeBuildCam);
+	}
+}
+
+void AIsekaiVillageCharacter::OnGrabBuildingTemplate()
+{
+	if (IsBuildMode() && BuildEdit)
+	{
+		BuildEdit->GrabUnderCursor();
+	}
+}
+
+void AIsekaiVillageCharacter::OnSaveBuildingTemplate()
+{
+	if (IsBuildMode() && BuildEdit)
+	{
+		BuildEdit->SaveSelectionAsTemplate();
+	}
+}
+
+void AIsekaiVillageCharacter::OnCycleBuildingTemplate()
+{
+	if (IsBuildMode() && BuildEdit)
+	{
+		BuildEdit->CycleArmedTemplate(1);
+	}
+}
+
+void AIsekaiVillageCharacter::OnClearBuildingTemplate()
+{
+	if (IsBuildMode() && BuildEdit)
+	{
+		BuildEdit->ClearTemplateSelection();
+	}
 }
 
 void AIsekaiVillageCharacter::OnBuildCornerPullIn()

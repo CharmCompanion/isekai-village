@@ -222,6 +222,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Build")
 	TObjectPtr<UBuildEditComponent> BuildEdit;
 
+	/** Collision-free fly camera used while laying out the town. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Build")
+	bool bFreeBuildCam = false;
+
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void SetFreeBuildCam(bool bEnable);
+
+	virtual void Jump() override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gather")
 	TObjectPtr<UGatherInventoryComponent> Gather;
 
@@ -422,6 +431,11 @@ public:
 	void OnBuildToggleFreeform();
 	void OnBuildScaleUp();
 	void OnBuildScaleDown();
+	void OnToggleFreeBuildCam();
+	void OnGrabBuildingTemplate();
+	void OnSaveBuildingTemplate();
+	void OnCycleBuildingTemplate();
+	void OnClearBuildingTemplate();
 	UFUNCTION(BlueprintPure, Category = "Build")
 	bool IsBuildMode() const;
 	bool TryGather();
@@ -445,6 +459,15 @@ private:
 	AProceduralMagicCircle* GetLeftCircleActor() const;
 	AProceduralMagicCircle* GetRightCircleActor() const;
 	AProceduralMagicCircle* GetGroundTargetCircleActor() const;
+
+	float SavedGravityScale = 1.0f;
+	float SavedJumpZVelocity = 700.0f;
+	float SavedMaxAcceleration = 2048.0f;
+	float SavedArmLength = 400.0f;
+	FVector SavedSocketOffset = FVector(0.0f, 40.0f, 50.0f);
+	bool bSavedOrientToMovement = true;
+	bool bSavedCameraCollision = true;
+	FVector FreeCamReturnLocation = FVector::ZeroVector;
 
 	float NormalCapsuleHalfHeight = 88.0f;
 	float SlideCapsuleHalfHeight  = 44.0f;

@@ -127,3 +127,78 @@ struct ISEKAIVILLAGE_API FBuildMaterialAssignment
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
 	FLinearColor InteriorTint = FLinearColor::White;
 };
+
+/** One modular piece stored relative to a template's anchor. */
+USTRUCT(BlueprintType)
+struct ISEKAIVILLAGE_API FBuildTemplatePiece
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	EBuildPieceType PieceType = EBuildPieceType::Wall;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	EBuildOccupancy Occupancy = EBuildOccupancy::Full;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	EBuildWallStyle WallStyle = EBuildWallStyle::Straight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FBuildMaterialAssignment Materials;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FVector RelativeLocation = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	float RelativeYaw = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FVector ScaleMultiplier = FVector(1.0f, 1.0f, 1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	uint8 SectionMask = 0x0F;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	TArray<FBuildCorner> Corners;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	float CellSize = 200.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	float WallHeight = 280.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	float Thickness = 18.0f;
+};
+
+/** One furniture prop stored relative to a template's anchor. */
+USTRUCT(BlueprintType)
+struct ISEKAIVILLAGE_API FBuildTemplateProp
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FName PropTag = NAME_None;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FVector RelativeLocation = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	float RelativeYaw = 0.0f;
+};
+
+/** A saved building: modular pieces and linchpin props, shareable as JSON. */
+USTRUCT(BlueprintType)
+struct ISEKAIVILLAGE_API FBuildTemplate
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	FString Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	TArray<FBuildTemplatePiece> Pieces;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Build")
+	TArray<FBuildTemplateProp> Props;
+};

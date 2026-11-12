@@ -12,6 +12,10 @@
 #include "IsekaiVillageCharacter.h"
 #include "GatherInventoryComponent.h"
 #include "ProceduralMeshComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Misc/Paths.h"
+#include "HAL/FileManager.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FModularDebrisSalvageTest, "IsekaiVillage.Building.DebrisSalvage", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FModularDebrisSalvageTest::RunTest(const FString& Parameters)
@@ -158,6 +162,89 @@ bool FModularRoomLinchpinWorkerTest::RunTest(const FString& Parameters)
 	// Reconcile golem population and check workplace registration
 	Village->ReconcileGolemPopulation();
 
+	W->DestroyWorld(false);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBuildTemplateAndFreeCamTest, "IsekaiVillage.Building.TemplateAndFreeCam", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FBuildTemplateAndFreeCamTest::RunTest(const FString& Parameters)
+{
+	const UWorld::InitializationValues IV = UWorld::InitializationValues().AllowAudioPlayback(false).CreatePhysicsScene(true).CreateNavigation(false).CreateAISystem(false).ShouldSimulatePhysics(false).SetTransactional(false);
+	UWorld* W = UWorld::CreateWorld(EWorldType::Game, false, NAME_None, nullptr, true, ERHIFeatureLevel::Num, &IV);
+	FActorSpawnParameters P;
+	P.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	AIsekaiVillageCharacter* Player = W->SpawnActor<AIsekaiVillageCharacter>(FVector::ZeroVector, FRotator::ZeroRotator, P);
+	ABuildPiece* WallA = W->SpawnActor<ABuildPiece>(FVector(0.0f, 0.0f, 0.0f), FRotator(0.0f, 90.0f, 0.0f), P);
+	ABuildPiece* WallB = W->SpawnActor<ABuildPiece>(FVector(400.0f, 0.0f, 0.0f), FRotator::ZeroRotator, P);
+	ALinchpinProp* Anvil = W->SpawnActor<ALinchpinProp>(FVector(200.0f, 80.0f, 0.0f), FRotator::ZeroRotator, P);
+	if (!TestNotNull(TEXT("Player"), Player) || !TestNotNull(TEXT("Wall A"), WallA) || !TestNotNull(TEXT("Wall B"), WallB) || !TestNotNull(TEXT("Anvil"), Anvil) || !TestNotNull(TEXT("Build edit"), Player->BuildEdit.Get()))
+	{
+		W->DestroyWorld(false);
+		return false;
+	}
+
+	WallA->PieceType = EBuildPieceType::Wall;
+	WallA->WallStyle = EBuildWallStyle::CurvedArc;
+	WallA->SectionMask = 0x05;
+	WallA->ScaleMultiplier = FVector(2.0f, 2.0f, 1.0f);
+	WallB->PieceType = EBuildPieceType::Floor;
+	Anvil->SetupProp(TEXT("Anvil"));
+
+	const FVector Start = Player->GetActorLocation();
+	Player->SetFreeBuildCam(true);
+	TestTrue(TEXT("Free cam is on"), Player->bFreeBuildCam);
+	TestEqual(TEXT("Movement is flying"), static_cast<int32>(Player->GetCharacterMovement()->MovementMode), static_cast<int32>(MOVE_Flying));
+	TestEqual(TEXT("Capsule ignores the island"), static_cast<int32>(Player->GetCapsuleComponent()->GetCollisionEnabled()), static_cast<int32>(ECollisionEnabled::NoCollision));
+	Player->SetActorLocation(Start + FVector(0.0f, 0.0f, 5000.0f));
+	Player->SetFreeBuildCam(false);
+	TestFalse(TEXT("Free cam is off"), Player->bFreeBuildCam);
+	TestEqual(TEXT("Movement walks again"), static_cast<int32>(Player->GetCharacterMovement()->MovementMode), static_cast<int32>(MOVE_Walking));
+	TestTrue(TEXT("No ground returns to the start"), Player->GetActorLocation().Equals(Start, 5.0f));
+
+	UBuildEditComponent* Edit = Player->BuildEdit;
+	Edit->ToggleSelectionActor(WallA);
+	Edit->ToggleSelectionActor(WallB);
+	Edit->ToggleSelectionActor(Anvil);
+	TestEqual(TEXT("Three parts selected"), Edit->GetTemplateSelectionCount(), 3);
+	const FString Saved = Edit->SaveTemplateNamed(TEXT("AutomationProbe_DeleteMe"));
+	TestEqual(TEXT("Template file saved"), Saved, FString(TEXT("AutomationProbe_DeleteMe")));
+
+	Edit->LoadedTemplates.Reset();
+	Edit->ReloadBuildTemplates();
+	const int32 Spawned = Edit->StampTemplateNamed(TEXT("AutomationProbe_DeleteMe"), FVector(10000.0f, 0.0f, 0.0f), 0.0f);
+	TestEqual(TEXT("Stamp spawns every part"), Spawned, 3);
+
+	ABuildPiece* CopyA = nullptr;
+	for (TActorIterator<ABuildPiece> It(W); It; ++It)
+	{
+		if (FVector::DistSquared(It->GetActorLocation(), FVector(9800.0f, -26.6f, 0.0f)) < FMath::Square(30.0f) ||
+			FMath::IsNearlyEqual(It->GetActorLocation().X, 9800.0f, 1.0f))
+		{
+			CopyA = *It;
+		}
+	}
+	TestNotNull(TEXT("Copied wall exists"), CopyA);
+	if (CopyA)
+	{
+		TestEqual(TEXT("Copied wall keeps its arc"), CopyA->WallStyle, EBuildWallStyle::CurvedArc);
+		TestEqual(TEXT("Copied wall keeps its mask"), CopyA->SectionMask, static_cast<uint8>(0x05));
+		TestTrue(TEXT("Copied wall keeps its scale"), CopyA->ScaleMultiplier.Equals(FVector(2.0f, 2.0f, 1.0f)));
+		TestTrue(TEXT("Copied wall keeps its yaw"), FMath::IsNearlyEqual(CopyA->GetActorRotation().Yaw, 90.0f, 0.1f));
+	}
+
+	bool bFoundAnvil = false;
+	for (TActorIterator<ALinchpinProp> It(W); It; ++It)
+	{
+		if (It->GetActorLocation().X > 5000.0f && It->LinchpinTag == TEXT("Anvil"))
+		{
+			bFoundAnvil = true;
+		}
+	}
+	TestTrue(TEXT("Copied anvil keeps its tag"), bFoundAnvil);
+
+	const FString ProbePath = FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("BuildTemplates"), TEXT("AutomationProbe_DeleteMe.json"));
+	IFileManager::Get().Delete(*ProbePath);
 	W->DestroyWorld(false);
 	return true;
 }

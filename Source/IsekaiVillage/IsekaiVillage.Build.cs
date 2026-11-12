@@ -21,7 +21,8 @@ public class IsekaiVillage : ModuleRules
 			"SlateCore",
 			"Landscape",
 			"PhysicsCore",
-			"Foliage"
+			"Foliage",
+			"Json"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
